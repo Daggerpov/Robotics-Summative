@@ -162,8 +162,7 @@
                     <p>This file will be used to make various 'routes' to the URLs for the application, or its different 'pages'/'views'. 
                         The routes are the different URLs that the application implements. With the Flask web framework, handlers for the 
                         application routes are written as Python functions, called view functions. These functions are mapped(like a pointer)
-                        to one or more route URLs so that Flask knows what to execute under that URL. Trust me, it's not as complicated as it 
-                        sounds.
+                        to one or more route URLs so that Flask knows what to execute under that URL. 
                     </p>
                     <p>This view function is very simple, all it does when a user accesses this URL(either '/' or '/index') is return "Hello, World!"
                         The two @app.route lines above the function are what's known as decorators. They're not part of the flask framework, rather
@@ -172,8 +171,33 @@
                         it with the function. This means that when a user accesses either of the two URLs, the function below them will be executed. 
                         Most of the time, though, these functions only require one of these decorators in order to get called. It's just that whether
                         the user is on the default(blank or '/') URL, or on the '/index' URL, we want it to run that same function. 
-
-
+                    </p>
+                    <p>To finally get the application up and running on your browser, there is one more Python script you need to make. It should be 
+                        made a top 'level' of all your files inside of microblog. Meaning, it is on the same 'level' as "app" or "venv". You do this 
+                        by clicking on the new file button after having clicked on the microblog folder so that you make a file directly inside of
+                        this folder. 
+                        <img src="./img/microblog.jpg">
+                    </p>
+                    <p>This one line of code just imports the application instance from the app package. I know it can be a little confusing with having them 
+                        as the same name, but to re-clarify: the first "app" is the variable in which we instantiated the app class object inside of, and the 
+                        second "app" is the package class it's getting instantiated from in the app.py file. Feel free to change the variable name or importing 
+                        the app package as a different name by doing the following: "import app as (new name for it)" as opposed to simply doing "import app" 
+                        at the top of the "__init__.py" file.
+                    </p>
+                    <p>The last step before running your application on a localhost is setting up the FLASK_APP environment variable. On a windows machine,
+                        you need to do this following command:
+                        <img src="./img/set flask_app.jpg">
+                    </p>
+                    <p>On other machines, you need to type "export" instead of "set" like so:
+                        <img src="./img/export flask_app.jpg">
+                    </p>
+                    <p>Get used to running this command in your virtual environment. You're going to have to do it every single time you re-launch your
+                        terminal to run this application. Also, if you're running multiple flask applications, you're going to have to make sure you're 
+                        in the right flask_app environment. This has caused a lot of frustration in the past for me, when I didn't realize I had actually
+                        just been in the wrong flask_app environment. Save yourself the headache and always remember to do this when opening up the terminal 
+                        for running your flask application. 
+                    </p>
+                    
                 </section>
                 
             </div>
