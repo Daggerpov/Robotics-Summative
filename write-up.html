@@ -118,6 +118,12 @@
                         you do choose to not use Visual Studio Code, just know that most of what I'm saying will apply
                         to any other IDE, or at least shouldn't be too difficult to figure out yourself. 
                     </p>
+                    <p>One unique advantage Visual Studio Code has above other IDEs, though, is the ability to run its own 
+                        terminal within the window. You can do this by clicking "Terminal" -> "New Terminal". This is what 
+                        I'm going to be using to show you the commands I'm typing in so you can copy exactly. Otherwise, 
+                        the windows terminal is the exact same and I will be providing alternate commands for those of you
+                        running mac/linux machines. 
+                    </p>
                     <p>So, let's get into setting up our first folder and Python file inside of it. Firstly, 
                         you want to open a new window of Visual Studio Code, click "File" -> "Open Folder"
                         <br><br><img src="./img/open folder.jpg">
@@ -176,7 +182,7 @@
                         made a top 'level' of all your files inside of microblog. Meaning, it is on the same 'level' as "app" or "venv". You do this 
                         by clicking on the new file button after having clicked on the microblog folder so that you make a file directly inside of
                         this folder. 
-                        <img src="./img/microblog.jpg">
+                        <br><br><img src="./img/microblog.jpg">
                     </p>
                     <p>This one line of code just imports the application instance from the app package. I know it can be a little confusing with having them 
                         as the same name, but to re-clarify: the first "app" is the variable in which we instantiated the app class object inside of, and the 
@@ -186,10 +192,10 @@
                     </p>
                     <p>The last step before running your application on a localhost is setting up the FLASK_APP environment variable. On a windows machine,
                         you need to do this following command:
-                        <img src="./img/set flask_app.jpg">
+                        <br><br><img src="./img/set flask_app.jpg">
                     </p>
                     <p>On other machines, you need to type "export" instead of "set" like so:
-                        <img src="./img/export flask_app.jpg">
+                        <br><br><img src="./img/export flask_app.jpg">
                     </p>
                     <p>Get used to running this command in your virtual environment. You're going to have to do it every single time you re-launch your
                         terminal to run this application. Also, if you're running multiple flask applications, you're going to have to make sure you're 
@@ -197,7 +203,14 @@
                         just been in the wrong flask_app environment. Save yourself the headache and always remember to do this when opening up the terminal 
                         for running your flask application. 
                     </p>
-                    
+                    <p>Finally, the last thing left to do is run your flask application. 
+                        <br><br><img src="./img/flask run.jpg">
+                    </p>
+                    <p>To access the application that's just been run on your computer, you can type "localhost:5000" into your browser's address bar. 
+                        If you remember from earlier, though, we set up 2 different URL decorators to access this same page. This was the first one('/'), 
+                        alternatively, you can also type "localhost:5000/index". However, these are the only two URLs you can type in at the moment. 
+                        In the terminal, once you're done, you can press Ctrl-C to stop the application from running.
+                    </p>
                 </section>
                 
             </div>
