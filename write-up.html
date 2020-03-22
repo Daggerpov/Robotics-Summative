@@ -34,7 +34,7 @@
                         the material in <a href="https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world"
                         >The Flask Mega-Tutorial</a>(Chapters 1-8). To follow along and understand what's happening, a bit of previous 
                         OOP(Object-Oriented Programming) knowledge is recommended, as well as, what I'd classify as an 'intermediate' 
-                        understanding of the Python programming language. However, for things unique to building a dynamic website, you're 
+                        understanding of the Python and HTML5 programming languages. However, for things unique to building a dynamic website, you're 
                         hopefully going to find everything you need right here in this write-up. 
                     </p>
                     <p>Below are clickable links for you to jump straight to 
@@ -238,9 +238,18 @@
                 </section>
                     <h2><a name="chapter2">Chapter 2: Templates</a></h2>
 
-                    <h3><u>Introduction To Templates<u></h3>
+                    <h3><u>Introduction To Templates</u></h3>
                     <p>Since, we don't yet have users on our webpage, we don't have to worry about that yet, instead, we can make mock ones.
-                        We're going to be implementing these as Python dictionaries, with keys associated to values.
+                        We're going to be implementing these as Python dictionaries, linking a user's username to their username. In our case, 
+                        we'll name our first mock user "Bogar". Having mock objects or components to your website is a really useful thing in 
+                        web development. It allows you to concentrate on one part of the application without having to worry about the other
+                        parts of the system that don't exist yet, while still being able to test it out like it were implemented already. 
+                    </p>
+                    <p>Right now, we want to create our homepage that'll display a custom message based on our user's username being "Bogar". 
+                        The first step to that is to set a mock username to the variable "user".
+                        <br><br><img src="./img/setting user.jpg">
+
+
 
                 <section id="chapter2">
 
@@ -251,7 +260,7 @@
         
         
         <footer>
-            <p>Made by: Daniel Agapov, rookie member of the LDHSS Robotics team(RoboRavens4783)   | 2020</p>
+            <p>Made by: Daniel Agapov, rookie member of the LDHSS Robotics team(RoboRavens4783)  |  2020</p>
         </footer>
     </body>
 </html>
