@@ -49,7 +49,9 @@
                 </article>
                 
                 <section id="chapter1">
-                    <h3><a name="chapter1">Chapter 1: Hello, World!</a>
+                    <h2><a name="chapter1">Chapter 1: Hello, World!</a></h2>
+                    
+                    <h3>Installing Python</h3>
                     <p>Firstly, you need to ensure that <i><b>Python</b></i> is installed onto your machine.
                         This can be done by visiting the <a href="https://www.python.org/">python.org</a> website.
                         Make sure to have it be at least Python3.6 or later, since older versions
@@ -57,21 +59,20 @@
                         installation. By installing Python, you also get pip, which will allow you to 
                         install modules/libraries directly from whatever terminal window you're using.
                         You can also use your terminal window to check if python is installed by typing 
-                        in "python3" or "python" if that doesn't work. This'll display your current version
+                        in "python3", or "python" if that doesn't work. This'll display your current version
                         and enter you into the Python Interpreter, which will be used later for various
-                        python commands, so remember how to access it. Bear in mind, that my terminal may not
-                        look the same as yours when I show what commands to type, since I'm not actually 
-                        executing them. The point of inserting these screenshots is to simply show exactly what 
-                        to type letter by letter, without me actually pressing "Enter" or doing the commands.
+                        python commands, so remember how to access it.
                     </p>
+                    
+                    <h3>Installing flask</h3>
                     <p>Once Python is installed, along with pip, you can then use this command to install packages(like <b><i>Flask</i></b>).
-                        <br><br><img src="./img/pip install flask.jpg">
+                        <br><br><img src="./img/pip install package.jpg">
                     </p>
-                    <p>If you're having issues with running this command, check to see if you are on 
+                    <p>If you're having issues with running this command later on, check to see if you are on 
                         the administrator's account, since it won't work on another user's account.
                     </p>
                     <p>In order to take care of issues such as having to maintain different versions of packages 
-                        for different applications, Python uses the concept of <i><b>virtual environments</b></i>
+                        for different applications, Python uses the concept of <i><b>virtual environments</b></i>.
                         It is essentially a copy of the python interpreter. That is to say, that if you install
                         a package into this virtual environment, it'll remain local and not affect the rest of 
                         your system.
@@ -92,8 +93,8 @@
                         <br><br><img src="./img/python3 -m venv venv.jpg">
                     </p>
                     <p>Note that in some operating systems you may need to use "python" instead of "python3" in
-                        the command above, since some installations use "python" for Python2.x releases and python3 for the 3.x
-                        releases, while others use "python" for the 3.x releases.
+                        the command above, since some installations use "python" for Python2.x releases and "python3" for the 3.x
+                        releases, while others simply use "python" for the 3.x releases.
                     </p>
                     <p>Once you have your virtual environment created, you need to tell your system that you wish to use it. 
                         To activate your virtual environment you need to type this command on a UNIX(Mac or Linux) system:
@@ -102,6 +103,59 @@
                     <p>If you are using the Microsoft Windows command prompt window(like I am), the activation command is slightly different:
                         <br><br><img src="./img/windows activation.jpg">
                     </p>
+                    <p>Once in your virtual environment, you can then use the "pip install (package-name)" command from 
+                        earlier to install flask.
+                        <br><br><img src="./img/pip install flask.jpg">
+                    </p>
+                    
+                    <h3>A "Hello, World" Flask Application</h3>
+                    <p>
+                        The tutorial I followed for this website made various Python and HTML5 files/folders by using
+                        the terminal and making directories instead of just doing it the easy way. I found that a much
+                        simpler method of doing this was by just doing it all in your IDE(Integrated Development 
+                        Environment), like Visual Studio Code. I'm assuming that anyone reading this uses this IDE, 
+                        considering it's the one we use at robotics and is among the world's most popular IDEs. If 
+                        you do choose to not use Visual Studio Code, just know that most of what I'm saying will apply
+                        to any other IDE, or at least shouldn't be too difficult to figure out yourself. 
+                    </p>
+                    <p>So, let's get into setting up our first folder and Python file inside of it. Firstly, 
+                        you want to open a new window of Visual Studio Code, click "File" -> "Open Folder"
+                        <br><br><img src="./img/open folder.jpg">
+                    </p>
+                    <p>Then, navigate through to your folder called "microblog". If you aren't sure where this folder is, 
+                        you can do a search or look at the file path from when you were doing commands in the terminal 
+                        as shown below.
+                        <br><br><img src="./img/microblog file path.jpg">
+                    </p>
+                    <p>Next, you just want to click "Select Folder". Once you have the folder open, you'll notice how the 
+                        "venv" folder has already been made inside of your "microblog" folder. It contains all the things
+                        you've installed into your virtual environment thus far. Now, you want to make a new folder at the
+                        same 'level' as this folder. You do this by clicking on the button shown below to make a new folder 
+                        directly inside the "microblog" one - make sure you haven't selected the "venv" folder and are 
+                        just in the "microblog" folder. You're going to name this new folder "app". 
+                        <br><br><img src="./img/app.jpg">
+                    </p>
+                    <p>Inside of the new app folder, you're going to make a new file by clicking on this button, and name it
+                        "__init__.py". This'll let Visual Studio Code know about which kind of file it is by its file extension. 
+                        This is ".py" in our case, which is short for Python. "__init__" signifies it as being the initialization file.
+                        <br><br><img src="./img/__init__ creation.jpg">
+                    </p>
+                    <p>Now, we finally get to the fun part of making the website - coding it! Feel free to copy the code exactly to
+                        follow along. Although, I would highly suggest typing it out yourself to get a feel for actually doing so, 
+                        rather than copy-pasting it. 
+                        <br><br><img src="./img/c1 init code p1.jpg">
+                    </p>
+                    <p>The Python script above instantiates the application object from the Flask class. The __name__ variable used as 
+                        a parameter to the Flask class is a predefined variable in Python, which is set to the name of the module in which 
+                        it's used. Later on, Flask will use the location of this module passed here as a starting point when it 
+                        needs to load associated resources such as template files(HTML5 front-end files). We then import "routes" from the 
+                        folder we made earlier called "app". In case you were curious, the reason as to why we're importing routes at the bottom, 
+                        instead of at the top like usual, is because routes references the app variable created here in this file. You don't need
+                        to worry about this too much for now, but just know that this is a little work-around for a common issue with Flask applications,
+                        being that they mutually reference each other sometimes and can cause an error by doing so. However, as of now, the routes file 
+                        has not yet been created. So, let's do that!
+                    </p>
+                    <p>
 
                 </section>
                 
