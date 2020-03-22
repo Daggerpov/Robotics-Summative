@@ -160,6 +160,18 @@
                         <br><br><img src="./img/routes.jpg"> 
                     </p>
                     <p>This file will be used to make various 'routes' to the URLs for the application, or its different 'pages'/'views'. 
+                        The routes are the different URLs that the application implements. With the Flask web framework, handlers for the 
+                        application routes are written as Python functions, called view functions. These functions are mapped(like a pointer)
+                        to one or more route URLs so that Flask knows what to execute under that URL. Trust me, it's not as complicated as it 
+                        sounds.
+                    </p>
+                    <p>This view function is very simple, all it does when a user accesses this URL(either '/' or '/index') is return "Hello, World!"
+                        The two @app.route lines above the function are what's known as decorators. They're not part of the flask framework, rather
+                        they're built into Python, meaning you might see them elsewhere in other projects of yours later on. They essentially act
+                        like modifiers for the function under them. This decorator take the URL as an argument inside of the brackets and associates 
+                        it with the function. This means that when a user accesses either of the two URLs, the function below them will be executed. 
+                        Most of the time, though, these functions only require one of these decorators in order to get called. It's just that whether
+                        the user is on the default(blank or '/') URL, or on the '/index' URL, we want it to run that same function. 
 
 
                 </section>
