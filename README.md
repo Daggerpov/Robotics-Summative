@@ -1,6 +1,6 @@
 # Robotics-Summative
 
-- make three routes: Home, Write-Up, About RavenScout
+- make three routes: Home, Write-Up, About RavenScout DONE
 - in the RavenScout one, I'll talk about:
     1. general info
     2. requirements/goals of the website
@@ -9,4 +9,6 @@
     5. Include the repository for RavenScout https://github.com/FusionStreak/RavenScout
 - I need to make the write-up file smaller, by including individual files for each chapter into the main write-up file
 - I need to email Mr. Morrison to get confirmation that the way I'm doing things in chapter 1 are good
-- reorganize the images and crop them better, like the vsc ones and command prompt ones, as well
+- reorganize the images and crop them better, like the vsc ones and command prompt ones, as well DONE
+- ask Sayf to make a little visualization of what the finished product of RavenScout would look like, as suggested by 
+Hassan
