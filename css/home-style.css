@@ -75,3 +75,15 @@ footer{
     color: #ffffff
 }
 
+p { 
+    font-size: 18px;
+    font-weight: normal;
+}
+
+li { 
+    font-size: 20px;
+}
+
+#main-column h1{
+    font-size: 52px;
+}

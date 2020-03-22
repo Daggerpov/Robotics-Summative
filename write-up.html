@@ -32,9 +32,10 @@
                     <p>
                         For my summative write-up for the year 2020, I'll be going over 
                         the material in <a href="https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world"
-                        >The Flask Mega-Tutorial</a>(Chapters 1-8).
+                        >The Flask Mega-Tutorial</a>(Chapters 1-8). 
                     </p>
-                    <p>This includes:</p>
+                    <p>Below are clickable links for you to jump straight to 
+                        whichever chapter you're on in reading this write-up:</p>
                     <ul>
                         <li><a href="#chapter1">Chapter 1: Hello, World!</a></li>
                         <li>Chapter 2: Templates</li>
@@ -49,7 +50,7 @@
                 
                 <section id="chapter1">
                     <h3><a name="chapter1">Chapter 1: Hello, World!</a>
-                    <p>Firstly, you need to ensure that Python is installed onto your machine.
+                    <p>Firstly, you need to ensure that <i><b>Python</b></i> is installed onto your machine.
                         This can be done by visiting the <a href="https://www.python.org/">python.org</a> website.
                         Make sure to have it be at least Python3.6 or later, since older versions
                         aren't supported by Flask. Also, make sure that you select "add to PATH" upon 
@@ -58,14 +59,50 @@
                         You can also use your terminal window to check if python is installed by typing 
                         in "python3" or "python" if that doesn't work. This'll display your current version
                         and enter you into the Python Interpreter, which will be used later for various
-                        python commands, so remember how to access it.
+                        python commands, so remember how to access it. Bear in mind, that my terminal may not
+                        look the same as yours when I show what commands to type, since I'm not actually 
+                        executing them. The point of inserting these screenshots is to simply show exactly what 
+                        to type letter by letter, without me actually pressing "Enter" or doing the commands.
                     </p>
-                    <p>Once Python is installed, along with pip, you can then use this command to install packages(like Flask).
+                    <p>Once Python is installed, along with pip, you can then use this command to install packages(like <b><i>Flask</i></b>).
                         <br><br><img src="./img/pip install flask.jpg">
                     </p>
                     <p>If you're having issues with running this command, check to see if you are on 
-                        the administrative user's account, since it won't work on another user's account.
+                        the administrator's account, since it won't work on another user's account.
                     </p>
+                    <p>In order to take care of issues such as having to maintain different versions of packages 
+                        for different applications, Python uses the concept of <i><b>virtual environments</b></i>
+                        It is essentially a copy of the python interpreter. That is to say, that if you install
+                        a package into this virtual environment, it'll remain local and not affect the rest of 
+                        your system.
+                    </p>
+                    <p>An added benefit to virtual environments, is that they are owned by the user that created 
+                        them. Which means, that if you faced the issue earlier of not being the administrator on 
+                        your computer, you can run commands in here freely. 
+                    </p>
+                    <p>The first step to this is making a directory to have this virtual environment in.
+                        <br><br><img src="./img/mkdir microblog.jpg">
+                    </p>
+                    <p>Then, you need to enter into the directory you've just made.
+                        <br><br><img src="img/cd microblog.jpg">
+                    </p>
+                    <p>Now, you can make a new virtual environment, that'll be named "venv". The first word "venv"
+                        is for the Python virtual environment package, while the second "venv" is for your 
+                        virtual environment's name, which you can change if you'd like.
+                        <br><br><img src="./img/python3 -m venv venv.jpg">
+                    </p>
+                    <p>Note that in some operating systems you may need to use "python" instead of "python3" in
+                        the command above, since some installations use "python" for Python2.x releases and python3 for the 3.x
+                        releases, while others use "python" for the 3.x releases.
+                    </p>
+                    <p>Once you have your virtual environment created, you need to tell your system that you wish to use it. 
+                        To activate your virtual environment you need to type this command on a UNIX(Mac or Linux) system:
+                        <br><br><img src="./img/unix activation of venv.jpg">
+                    </p>
+                    <p>If you are using the Microsoft Windows command prompt window(like I am), the activation command is slightly different:
+                        <br><br><img src="./img/windows activation.jpg">
+                    </p>
+
                 </section>
                 
             </div>
