@@ -42,7 +42,7 @@
                     <ul>
                         <li><a href="#chapter1">Chapter 1: Hello, World!</a></li>
                         <li><a href="#chapter2">Chapter 2: Templates</a></li>
-                        <li>Chapter 3: Web Forms</li>
+                        <li><a href="#chapter3">Chapter 3: Web Forms</a></li>
                         <li>Chapter 4: Database</li>
                         <li>Chapter 5: User Logins</li>
                         <li>Chapter 6: Profile Page and Avatars</li>
@@ -306,9 +306,56 @@
                         title conditional logic implemented earlier into the index.html file. 
                         <br><br><img src="./img/base html.jpg">
                     </p>
-                    <p>In this main template, the block control statement(anything inside of {...})  
+                    <p>In this main template, the block control statement(anything inside of {...}) is there to define the place where the derived 
+                        templates can insert themselves into this one. Blocks are given a unique name, which derived templates can reference when they 
+                        provide their proper content. Now, we can adapt the index.html file to now inherit from this base template we've just made. 
+                        <br><br><img src="./img/new index inheritance.jpg">
+                    </p>
+                    <p>The base.html template file will now be taking care of all the general page structure parts, so all that's required in the 
+                        index.html file is its proper content for that page. The "extends" control statement establishes the inheritance link between the 
+                        two template files. In more complicated terms, this means that Jinja2 know that when it is asked to render index.html it needs to 
+                        embed it inside base.html. Two two templates have matching block statements named "content", and this is how Jinja2 knows how to 
+                        combine the two templates into one. Now, for any additional pages, this base.html template has you covered and will just need to be 
+                        extended once again, in the same manner. This is how we can achieve the same look and feel of two web sub-pages without the need for duplication. 
+                    </p>
+
+                </section>
 
 
+
+                <section id="chapter3">
+
+                    <br><br><br><h2><a name="chapter2">Chapter 3: Web Forms</a></h2>
+
+                    <h3><u>Introduction To Flask-WTF</u></h3>
+                    <p>We are now going to be addressing our little issue of only having mock users. This will be done through the use 
+                        of web forms by accepting input to store actual users. Web forms are key in most web applications, being one 
+                        of the most basic building blocks to making a great web application. We'll be using forms to allow users to submit 
+                        posts, and also for logging in to the application. 
+                    </p>
+                    <p>This is where the Flask-WTF extension will come in handy. There will also be many more flask extensions to come 
+                        in the future. Once again, you can install this into your virtual environment by using the command seen below, like you've done previously. 
+                        <br><br><img src="./img/pip install flask-wtf.jpg">
+                    </p>
+                    
+                    <h3><u>Configuration</u></h3>
+                    <p>The application we've made so far is very simple, and for that reason we don't need to worry about its 
+                        configuration. However, in many cases with web apps, you might find yourself wanting to configure some variables 
+                        that'll get passed to the Flask web framework to personalize your website. 
+                    </p>
+                    <p>There's several formats for the application to specify configuration options. The format we're going to be using 
+                        is to store configuration variables in a class. This file named "config.py" will be made inside of the "app" folder. 
+                        <br><br><img src="./img/config py.jpg">
+                    </p>
+                    <p>If we eventually get to need more than one configuration set, then there is an option to make subclasses of this 
+                        configuration class. 
+                    </p>
+                    <p>The SECRET_KEY configuration variable is used as a value for a cryptographic key. Flask uses this to prevent 
+                        a Cross-Site Request Forgery attack or CSRF. The value of this secret key is set as an expression with two 
+                        terms, joined by the or operator. The first term looks for the value of an environment variable, also called
+                        SECRET_KEY
+
+                
                 </section>
                 
             </div>
