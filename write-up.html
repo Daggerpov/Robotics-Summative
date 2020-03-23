@@ -282,7 +282,16 @@
                         with the value('Daniel'). 
                         <br><br><img src="./img/adding posts.jpg">
                     </p>
-
+                    <p>Now, we have to update the index template. Since, the list of posts can have any number of elements, 
+                        it's up to the view function to decide how many posts are going to be presented in the page. The template cannot 
+                        make any assumptions about how many posts there are, so it needs to be prepared to render as many posts as the view sends. 
+                        We can do this by making a simple for loop that iterates through the posts and, for each post, has the post author's username 
+                        and its post body to put in a paragraph tag. The little conditional I put in the head tag is pretty simple to understand. It
+                        just evaluates whether there's already a title for this page, and either uses it in the title before "- Microblog" or generates 
+                        the generic title of "Welcome to Microblog". 
+                        <br><br><img src="./img/new index.jpg">
+                    </p>
+                    <p>
 
 
                 </section>
