@@ -397,6 +397,18 @@
                         LoginForm class to be given as an argument, which you can see referenced as "form". This argument will be sent by the login view 
                         function, which isn't written yet in the "routes.py" file.
                     </p>
+                    <p>The HTML "form" element in <> is used as a container for the web form content. The "action" attribute of the form is used to tell 
+                        the browser the URL that should be used when submitting the information the user entered in the fomr. When the action is set to an 
+                        empty string, the form is submitted to the URL that is currently in the address bar, which is the URL that rendered this form on 
+                        the page. The "method" attribute specifies the HTTP request method that should be used when submitting the form to the server. The 
+                        default is to send it with a GET request, but in almost all cases, using a POST request makes for a better user experience because 
+                        requests of this type can submit the form data in the body of the request, while GET requests add the form fields to the URL, cluttering 
+                        the browser address bar. 
+                    </p>
+                    <p>The "form.hidden_tag()" template argument generates a hidden field that includes a token that's used to protect the form against CSRF 
+                        attacks. All you need to do to have the form protected is include this hidden field and have the SECRET_KEY variable defined in the 
+                        Flask configuration. 
+                    </p>
                     <p>
 
                 
