@@ -434,7 +434,41 @@
                         import at the top of the file. 
                         <br><br><img src="./img/fixing login view function.jpg">
                     </p>
+                    <p>The first new thing in this version, though, is the "methods" argument in the route decorator. This tells Flask that this view 
+                        function accepts both GET and POST requests, overriding the default, which is to accept only GET requests. The HTTP states that 
+                        GET requests are those that return information to the client(the web browser). All the requests in the application so far are of 
+                        this type. POST requests are typically used when the browser submits form data to the server. Now that we've enabled "POST" requests, 
+                        the "Method Not Allowed" error should be all fixed. 
+                    </p>
+                    <p>The "flask()" function, imported from Flask, is a useful way to show a message to the user. This is only a temporary solution for our 
+                        application, though, since we don't have a system setup to actually log users in yet. 
+                    </p>
+                    <p>Although, the "flash" messages don't automatically appear in the browser, so we need to set up a way for these 
+                        messages to display in the "base.html" file itself. 
+                        <br><br><img src="./img/showing flash messages.jpg">
+                    </p>
+                    <p>Here, similarly to how you'd do it in Python, we use a "with" construct to assign the result of calling the "get_flashed_messages" 
+                        function to a messages variable. The conditional after this checks if "messages" has content, and if it does, displays them in an 
+                        unordered list. 
+                    </p>
+
+                    <h3><u>Improving Field Validation</u></h3>
+                    <p>We're now going to tell the user which fields they're incorrectly supplied data into in the login form, using style in the "login.html" page. 
+                        <br><br><img src="./img/adding red login.jpg">
+                    </p>
+                    <p>Now, if you try submitting the form with an empty username or password, this is what'll occur on your browser tab:
+                        <br><br><img src="./img/sign in errors implemented.jpg">
+                    </p>
                     
+                    <h3><u>Generating Links</u></h3>
+                    <p>Before leaving off this chapter, I'd like to talk about making links better in your application. Let's say, for instance, you 
+                        decide to reorganize your link names, or just don't want to bother with having to remember them all by name. Well, you can 
+                        simply use the "url_for()" method from Flask that will provide the link for certain pages. You'll see this in the following two 
+                        files below:
+                        <br><br><img src="./img/new url_for method implementation.jpg">
+                        <br><br><img src="./img/url_for implementation.jpg">
+                    </p>
+
                 
                 </section>
                 
