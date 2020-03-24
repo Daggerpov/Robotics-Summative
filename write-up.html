@@ -344,7 +344,8 @@
                         that'll get passed to the Flask web framework to personalize your website. 
                     </p>
                     <p>There's several formats for the application to specify configuration options. The format we're going to be using 
-                        is to store configuration variables in a class. This file named "config.py" will be made inside of the "app" folder. 
+                        is to store configuration variables in a class. This file named "config.py" will be made directly inside the main 
+                        "microblog" folder, on the same level as "microblog.py"
                         <br><br><img src="./img/config py.jpg">
                     </p>
                     <p>If we eventually get to need more than one configuration set, then there is an option to make subclasses of this 
@@ -353,7 +354,19 @@
                     <p>The SECRET_KEY configuration variable is used as a value for a cryptographic key. Flask uses this to prevent 
                         a Cross-Site Request Forgery attack or CSRF. The value of this secret key is set as an expression with two 
                         terms, joined by the or operator. The first term looks for the value of an environment variable, also called
-                        SECRET_KEY. 
+                        SECRET_KEY. The second term, is just a hardcoded string. This is a pttern that you'll see repeated often for 
+                        config vaiables. 
+                    </p>
+                    <p>The idea's that a value sourced from an environment variable is preferred, but if the environment doesn't 
+                        define the variable, then the hardcoded string is used instead. When you're developing this web application, 
+                        the security requirements are low, so you can just ignore this and let the hardcoded string be used. However, 
+                        when it's deployed onto a production server, you should set a unique and difficult to guess value as the 
+                        environment variable. 
+                    </p>
+                    <p>Now that the config file's setup, we need to let Flask know about it. So, we need to go back to the Flask application 
+                        instance in the __init__.py file. To do this, we need to call the method known as "from_object" and have "Config" 
+                        as a parameter. 
+                        <br><br><img src=""
 
                 
                 </section>
