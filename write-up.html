@@ -366,7 +366,24 @@
                     <p>Now that the config file's setup, we need to let Flask know about it. So, we need to go back to the Flask application 
                         instance in the __init__.py file. To do this, we need to call the method known as "from_object" and have "Config" 
                         as a parameter. 
-                        <br><br><img src=""
+                        <br><br><img src="./img/__init__ py changes for config.jpg">
+                    </p>
+                    <p>In case you're confused about why it seems as though I'm importing something from itself, seeing as "flask" and "Flask" or "config" 
+                        and "Config" seem like the same things, just know that I'm referring to the uppercase ones as their respective classes, whereas 
+                        "flask" and "config" are modules(like the file "config.py"). 
+                    </p>
+                    
+                    <h3><u>User Login Form</u></h3>
+                    <p>The Flask-WTF extension uses Python classes to represent web forms. A form class just defines the fields of the form as class 
+                        variables. To implement this new feature, we're going to be creating a new file called "forms.py" inside of the "app" folder. 
+                        This user login form will include: username, password, a "remember" me check box, and a submit button. 
+                        <br><br><img src="./img/forms py creation.jpg">
+                    </p>
+                    <p>The four classes that represent the field types that we're using for this form are imported directly from the WTForms package, 
+                        since the Flask-WTF extension doesn't provide customized versions. For each field, an object is created as a class variable in 
+                        the LoginForm class. Each field's given a little description or label as a first argument. 
+                    </p>
+                    <p>
 
                 
                 </section>
