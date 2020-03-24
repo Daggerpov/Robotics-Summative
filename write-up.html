@@ -383,6 +383,20 @@
                         since the Flask-WTF extension doesn't provide customized versions. For each field, an object is created as a class variable in 
                         the LoginForm class. Each field's given a little description or label as a first argument. 
                     </p>
+                    <p>The optional validators argument that you see in some of the fields is used to attach validation behaviors to fields. The 
+                        DataRequired validator simply checks that the field isn't submitted emtpy. There's many more validators available, some of 
+                        which we're going to use in future forms. 
+                    </p>
+                    
+                    <h3><u>Form Templates</u></h3>
+                    <p>Now, that we have a functional back-end for the user login form, our next step is to add the form to an HTML template so that 
+                        it can be rendered on a web page. For this, we're going to make a new HTML5 file inside the "templates" folder called "login.html". 
+                        <br><br><img src="./img/login html.jpg">
+                    </p>
+                    <p>For this template, we're using the "base.html" template once again. This templates expects a form object isntantiates from the 
+                        LoginForm class to be given as an argument, which you can see referenced as "form". This argument will be sent by the login view 
+                        function, which isn't written yet in the "routes.py" file.
+                    </p>
                     <p>
 
                 
