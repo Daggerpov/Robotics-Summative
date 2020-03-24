@@ -508,8 +508,27 @@
                         applications. We now have two new configuration items to add to the config file:
                         <br><br><img src="./img/new config.jpg">
                     </p>
-                    <p>This new extension takes the location of the application's database from the SQLALCHEMY_DATABASE_URI config variable. Just like 
-                        we saw in <a href="#chapter3">Chapter 3</a>, 
+                    <p>This new extension takes the location of the application's database from the "SQLALCHEMY_DATABASE_URI" config variable. Just like 
+                        we saw in <a href="#chapter3">Chapter 3</a>, it's a good practice to set configuration from environment variables, and provide a 
+                        fallback value as the second parameter in case the environment doesn't define the variable. We're actually configuring a database 
+                        named app.db located at the top level of the application, which is stored in the basedir variable. This file is automatically made 
+                        for us. 
+                    </p>
+                    <p>The "SQLALCHEMY_TRACK_MODIFICATIONS" configuration option is set to False to disable a feature of Flask-SQLAlchemy that's not needed. 
+                    </p>
+                    <p>The database is going to be represented in the application by the database instance. The database migration engine will also have an 
+                        instance. These are objects that need to be created after the application, in the "__init__.py" file.
+                        <br><br><img src="./img/adding sqlalchemy to init.jpg">
+                    </p>
+                    <p>These are all the changes we've made to the init script:
+                        <ul>
+                            <li>Imported a couple more modules at the top of the file</li>
+                            <li>We've added a db object that represents the database</li>
+                            <li>We've added another object that represents the migration engine</li>
+                            <li>Imported a new module called "models" at the bottom of the file, that will define the structure of the database</li>
+                        </ul>
+                    </p>
+
 
                 </section>
             </div>
