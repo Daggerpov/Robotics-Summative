@@ -479,8 +479,39 @@
                     <br><br><br><h2><a name="chapter4">Chapter 4: Database</a></h2>
         
                     <h3><u>Databases in Flask</u></h3>
+                    <p>Flask doesn't actually support databases natively. This means you'll have the freedom to choose the database that best fits. 
+                        There are two groups of databases, those that follow the relational model, and those that don't. Ones that are relational 
+                        implement the popular relational query language SQL, and those that don't are called NoSQL. Relational databases are a better 
+                        match for application that have structured data such as lists of users, blog posts, etc. while NoSQL databases are better for 
+                        applications with less defined structure. We're going with a relational one. 
+                    </p>
+                    <p>An extenstion we'll need to install is called "Flask-SQLAlchemy", which provides a Flask-friendly wrapper to the popular SQLAlchemy 
+                        package, which is an Object Relational Mapper or ORM. ORMs allow applications to manage a database using high-level entities such 
+                        as: class, objects, and methods, instead of tables and SQL. ORMs translate high-level operations into database commands. 
+                    </p> 
+                    <p>To install this package into your virtual environment, execute this command in your terminal window:
+                        <br><br><img src="./img/flask sqlalchemy.jpg">
+                    <p>
+                    
+                    <h3><u>Database Migrations</u></h3>
+                    <p>Database migrations address the issue of trying to make updates to an existing database as the application needs to change. This is 
+                        often difficult, seeing as relational databases are centered around structured data, so when the structure itself changes, the data 
+                        that's already in the database needs to be migrate to the modified structure. 
+                    </p>
+                    <p>So, the next extension we'll need to help with that is Flask-Migrate, created by Miguel Grinberg, the guy who wrote the blog I'm 
+                        basing this write-up on. To install it, type in this command:
+                        <br><br><img src="./img/flask migrate.jpg">
+                    </p>
+                    
+                    <h3><u>Flask-SQLAlchemy Configuration</u></h3>
+                    <p>During development(as opposed to production), we're going to use a SQLite database. These are convenient for developing small 
+                        applications. We now have two new configuration items to add to the config file:
+                        <br><br><img src="./img/new config.jpg">
+                    </p>
+                    <p>This new extension takes the location of the application's database from the SQLALCHEMY_DATABASE_URI config variable. Just like 
+                        we saw in <a href="#chapter3">Chapter 3</a>, 
 
-                
+                </section>
             </div>
         </section>
 
