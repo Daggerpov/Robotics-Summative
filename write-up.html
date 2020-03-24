@@ -511,8 +511,8 @@
                     <p>This new extension takes the location of the application's database from the "SQLALCHEMY_DATABASE_URI" config variable. Just like 
                         we saw in <a href="#chapter3">Chapter 3</a>, it's a good practice to set configuration from environment variables, and provide a 
                         fallback value as the second parameter in case the environment doesn't define the variable. We're actually configuring a database 
-                        named app.db located at the top level of the application, which is stored in the basedir variable. This file is automatically made 
-                        for us. 
+                        named app.db located at the top level of the application, which is stored in the basedir variable. This file will be automatically made 
+                        for us later, once we create the database. 
                     </p>
                     <p>The "SQLALCHEMY_TRACK_MODIFICATIONS" configuration option is set to False to disable a feature of Flask-SQLAlchemy that's not needed. 
                     </p>
@@ -528,7 +528,67 @@
                             <li>Imported a new module called "models" at the bottom of the file, that will define the structure of the database</li>
                         </ul>
                     </p>
+                    
+                    <h3><u>Database Models</u></h3>
+                    <p>The data that'll be stored in the database will be represented by a collection of classes, usually called database models.
+                    </p>
+                    <p>Here I've made a model that represents users in a table. I did this using the <a href="https://ondras.zarovi.cz/sql/demo/">
+                        WWW SQL Designer Tool</a>. It includes the fields, field datatypes, and field sizes. 
+                        <br><br><img src="./img/users table.jpg">
+                    </p>
+                    <p>The id field is typical to all models, and is used as the primary key. Each user in the database will be assigned a unique id value, 
+                        stored in this data field. Primary keys are, in most cases, automatically assigned by the database, so we just need to provide the 
+                        field to house them in. 
+                    </p>
+                    <p>The other three fields for: username, email, and password_hash are defined as strings(or "VARCHAR" in database lingo), and their 
+                        maximum lengths are specified so that the database can optimize its memory usage(which is important to do in computer science). 
+                    </p>
+                    <p>While the "username" and "email" fields are self-explanatory, the "password_hash" one has a little more to it. It is used for security 
+                        reasons so that passwords get 'hashed' by the database they're stored in, as to not be vulnerable to an attack. Although, this'll be done
+                        in <a href="#chapter5">Chapter 5</a>. 
+                    </p>
+                    <p>Now, let's go ahead and make a new file under the "app" folder and call it "models.py". 
+                        <br><br><img src="./img/models py creation.jpg">
+                    </p>
+                    <p>The "User" class created above inherits from "db.Model", which comes from Flask_SQLAlchemy and is its base class. This class defines 
+                        several attributes. Fields are created as instances of the "db.Column" class, which takes the field type as an argument, plus other 
+                        optional arguments, for example, allow us to indicate which fields are unique and indexes, which is important so that database searches 
+                        are efficient. 
+                    </p>
+                    <p>The "__repr__" method tells Python how to print objects of this class, which is going to be useful for debugging. 
+                    </p>
+                    
+                    <h3><u>Creating The Migration Repository</u></h3>
+                    <p>The model class created defines the initial database structure for this application, but as the application continues to grow, there's 
+                        going to be a need to change that structure, whether that's adding, modifying, or removing items. Alembic(the migration framework used by 
+                        Flask-Migrate), maintains a migration repository, which is a directory in which it stores its migration scripts. Each time a change is 
+                        made to the database structure, a migration script is added to the repository with the details of the change. 
+                    </p>
+                    <p>The "flask db" sub-command to Flask's commands, added by Flask-Migrate manages everything related to database migrations. So, lets' create 
+                        the migration repository for microblog by running this command:
+                        <br><br><img src="./img/flask db init.jpg">
+                    </p>
+                    <p>After running this command, you will find a new migrations directory, with a few files and a versions sub-directory inside.
+                    </p>
 
+                    <h3><u>The First Database Migration</u></h3>
+                    <p>This first migration will include the users table that maps the "User" database model. How Alembic normally creates a database migration 
+                        is automatically. To generate a migration automatically, Alembic compares the database structure as defined by the database models, 
+                        against the actual database structure currently used in the database. It then populates the migration script with the changes necessary 
+                        to make the database schema match the application models. In this case, since there is no previous database, the automatic migration will 
+                        add the entire "User" model to the migration script. The "flask db migrate" sub-command generates these automatic migrations:
+                        <br><br><img src="./img/flask db migrate -m users table.jpg">
+                    </p>
+                    <p>The -m "(...)" part is optional, but it adds a short descriptive text to whatever migration you're currently implementing. The output of the 
+                        command gives you an idea of what Alembic included in the migration. The first two lines are informational and can usually be ignored. It 
+                        then says that it found a user table and two indexes. Then it tells you where it wrote the migration script. The 976200887022 code is an 
+                        automatically generated unique code I got for the migration. 
+                    </p>
+                    <p>This migration script has two functions "upgrade()" and "downgrade()" to apply or remove migrations. This command must be used after migrating 
+                        a new script to the database:
+                        <br><br><img src="./img/flask db upgrade.jpg">
+                    </p>
+                    <p>
 
                 </section>
             </div>
