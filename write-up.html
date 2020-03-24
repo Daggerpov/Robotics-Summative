@@ -407,9 +407,33 @@
                     </p>
                     <p>The "form.hidden_tag()" template argument generates a hidden field that includes a token that's used to protect the form against CSRF 
                         attacks. All you need to do to have the form protected is include this hidden field and have the SECRET_KEY variable defined in the 
-                        Flask configuration. 
+                        Flask configuration.
                     </p>
-                    <p>
+                    <p>The form object calls the fields as methods, and they're already programmed to know how to render themselves as HTML code. {{ form.field_name.label }} 
+                        is used to include the field label, and {{ form.field_name() }} is used to get the field. For fields that require additional HTML 
+                        attributes, those can be passed as arguments. The username and password fields in this template take the "size" as an argument that'll 
+                        be added to the "input" HTML element as an attribute. This is how you can also attach CSS classes or IDs to form fields. 
+                    </p>
+
+                    <h3><u>Form Views</u></h3>
+                    <p>Finally, we have to code a new view function in the application that renders the template made. This is done in the "routes.py" file.
+                        We're going to make another view function right below the previous one and import the LoginForm class from the "forms" file inside of the "app" 
+                        folder. 
+                        <br><br><img src="./img/new login route.jpg">
+                    </p>
+                    <p>Here, we've instantiated an object of the LoginForm class form the "forms.py" file, and sent it to the template. The "form=form" syntax 
+                        means that it's passing the "form" object created in the line above to the template named "form". Now, we just need to add another 
+                        hyperlink on the top of every file to the new login page. All we need to do for this is to add it to the base.html file, for all 
+                        other template to inherit form, making it so all templates have this new hyperlink. 
+                        <br><br><img src="./img/new login hyperlink.jpg">
+                    </p>
+                    <h3><u>Receiving Form Data</u></h3>
+                    <p>As of right now, if you try hitting the submit button, the browser's going to display a "Method Not Allowed" error. This is because 
+                        the inside the login view function, the submit button has no logic in place yet to process data submitted by the user yet. So, we're 
+                        now going to be accepting and validating the data submitted by the user in this updated view function. Also, there are new modules to 
+                        import at the top of the file. 
+                        <br><br><img src="./img/fixing login view function.jpg">
+                    </p>
 
                 
                 </section>
