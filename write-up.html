@@ -588,7 +588,22 @@
                         a new script to the database:
                         <br><br><img src="./img/flask db upgrade.jpg">
                     </p>
-                    <p>
+                    
+                    <h3><u>Database Relationships</u></h3>
+                    <p>Relational databases are good at storing relations between data items, hence their name. Consider the case of a user writing a blog post. 
+                        The user will have a record in the "users" table, and the post will have a record in the "posts" table. The most efficient way to record 
+                        who wrote a given post is to link the two related records. 
+                    </p>
+                    <p>Once a link between a user and a post is established, the database can answer queries about this link, like which user wrote a 
+                        certain blog post. This would actually be a pretty easy one, but one where you try finding the reverse would be complex. If you 
+                        have a user, you may want to know all the posts that this user has written. Flask-SQLAlchemy will help with both types of queries. 
+                    </p>
+                    <p>Now, I've expanded the database diagram to show the link between a user's id field and a post's user_id field. Sounds confusing, but 
+                        that's because it is. Later on, in <a href="#chapter8">Chapter 8</a>, it'll get even harder when we introduce followers. However, this 
+                        stuff about database relationships is very good to know, considering it's taught in university computer science classes. For right now, 
+                        though, I hope you can follow, since I don't think it's too complex just yet.  
+                        <br><br><img src="./img/users and posts table.jpg">
+                    </p>
 
                 </section>
             </div>
