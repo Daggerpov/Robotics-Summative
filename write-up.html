@@ -45,8 +45,8 @@
                         <li><a href="#chapter2">Chapter 2: Templates</a></li>
                         <li><a href="#chapter3">Chapter 3: Web Forms</a></li>
                         <li><a href="#chapter4">Chapter 4: Database</a></li>
-                        <li>Chapter 5: User Logins</li>
-                        <li>Chapter 6: Profile Page and Avatars</li>
+                        <li><a href="#chapter5">Chapter 5: User Logins</a></li>
+                        <li><a href="#chapter6">Chapter 6: Profile Page and Avatars</a></li>
                         <li>Chapter 7: Error Handling</li>
                         <li>Chapter 8: Followers</li>
                     </ul>
@@ -803,14 +803,79 @@
                         "next" query string argument is set to the original URL, so the application can use that to redirect back after login. 
                         <br><br><img src="./img/adding next page to login route.jpg">
                     </p>
+                    <p>Right after the user's logged in by calling Flask-Login's "login_user()" function, the value of the "next" query string argument is obtained. 
+                        Flask provides a "request" variable that contains all the information that the client sent with the requrest. In particular, the "request.args" 
+                        attribute exposes the contents of the query string in a dictionary format. There's actually three possible cases that need to be considered to 
+                        determine where to redirect after a successful login: 
+                        <ol>
+                            <li>If the login URL, doesn't have a "next" argument, then the user is redirected to the index page</li>
+                            <li>If the login URL includes a "next" argument that's set to a relative path(or in other words, a URL without the domain portion), then 
+                                the user is directed to that URL</li>
+                            <li>If the login URL includes a "next" argument that's set to a full URL that includes a domain name, then the user's redirected to the index page</li>
+                        </ol>
+                    </p>
+                    <p>The first two cases are self-explanatory. The third case is in place to make the application more secure. An attacker could hypothetically 
+                        insert a URL to a malicious site in the "next" argument, so the application only redirects when the URL is relative, which ensures that the 
+                        redirect stays within the same site as the application. To determine if the URL is relative of absolute, we parse it with Werkzeug's "url_parse()" 
+                        function and then check if the "netloc" component is set or not. 
+                    </p>
+
+                    <h3><u>Showing The Logged In User In Templates</u></h3>
+                    <p>Instead of using fake users on the homepage, we can now use Flask-Login's "current_user" in the template.
+                        <br><br><img src="./img/index html no more mock users.jpg">
+                    </p>
+                    <p>Also, we can remove the "user" template argument in the view function.
+                        <br><br><img src="./img/no more mock user in index route.jpg">
+                    </p>
+                    
+                    <h3><u>User Registration</u></h3>
+                    <p>Now, so we can see our work in action, we need a way to register some users on our website! To do this, we need to make a new web form class 
+                        in "forms.py". 
+                        <br><br><img src="./img/new registrationform class in forms python.jpg">
+                    </p>
+                    <p>There is now a second validators to the "email" field after "DataRequired" called "Email". This is another stock validator that comes with WTForms 
+                        that'll ensure that what the user types in this field matches the structure of an email address. 
+                    </p>
+                    <p>Since this is a registration form, it is customary to ask the user to tyep the password twice to reduce the risk of a typo. For that reason 
+                        we have two password fields, that'll then be checked by another stock validator called "EqualTo" to ensure they're the same - or equal to each other.
+                    </p>
+                    <p>We've also added two methods to this class called "validate_username" and "validate_email()". In this case, we want to make sure the username and email 
+                        address entered by the user aren't already in the database. If they are, there'll be a "ValidationError" raised. The message included as the argument 
+                        in the exception will be the message that'll be displayed next to the field for the user to see. 
+                    </p>
+                    <p>To display this form on a web page, we need another HTML template, which is going to be called "register.html" and will go inside the "templates" folder. 
+                        <br><br><img src="./img/register html creation.jpg">
+                    </p>
+                    <p>Now, to add another view function for registration. 
+                        <br><br><img src="./img/new register view function.jpg">
+                    </p>
+                    <p>Pretty self-explanatory, but I'll explain just in case. We first make sure the user that goes to this route isn't logged in. The form is handled 
+                        in the same way for the one for loggin in. The logic that's done inside the "if validate_on_submit()" conditional creates a new user with the 
+                        username, email and password provided, writes it to the database, and then redirects to the login prompt so that the user can login. 
+                    </p>
+                    <p>You can now go ahead and test it out if you want, by creating an account on this application, logging in, and out. Make sure to try out all 
+                        the validation features we've added to better understand how they work. 
+                    </p>
+
+                </section>
+                
+                
+                
+                <section id="chapter6">
+
+                    <br><br><br><h2><a name="chapter6">Chapter 6: Profile Page and Avatars</a></h2>
+        
+                    <h3><u>User Profile Page</u></h3>
                     <p>
                 
-                </section>     
-                
-                
+                </section>
 
             </div>
         </section>
+                
+                
+                
+        
 
 
 
