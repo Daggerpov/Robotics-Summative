@@ -728,6 +728,82 @@
                             <li>"get_id": a method that returns a unique identifier for the user as a string</li>
                         </ul>
                     </p>
+                    <p>These four items are simple to implement, but since since they're fairly generic, Flask-Login provides a class called "UserMixin". It's first 
+                        imported from flask-login, then added as a parameter to the "User" class. 
+                        <br><br><img src="./img/adding usermixin.jpg">
+                    </p>
+                    
+                    <h3><u>User Loader Function</u></h3>
+                    <p>The way Flask-Login keeps track of the logged in user is by storing its unique identifier in Flask's "user" session, a storage space assigned 
+                        to each user who connects to the application. Since, Flask-Login knows nothing about databases, we need to configure a user loader function 
+                        for it to load a user given the ID. This function can be added in the "models.py" file.
+                        <br><br><img src="./img/added user loader function.jpg">
+                    </p>
+                    <p>The "@login.user_loader" decorator on top of the function is what registers the user loader with Flask-Login. The "id" that Flask-Login passes 
+                        to the function as an argument is going to be a string, so databases that user numeric IDs need to convert the string to integer as you can see above. 
+                    </p>
+                    
+                    <h3><u>Logging Users In</u></h3>
+                    <p>We are finally going to change the fake login that just issued a "flask()" message in the login view function.
+                        <br><br><img src="./img/login route update.jpg">
+                    </p>
+                    <p>The first two lines are a solution to a weird situation. This would be if a user tried clicking on the login button while already being 
+                        logged into your application. So, this condition uses the "current_user" variable from Flask-Login to check if they're already 
+                        "authenticated" and redirects them to the "index" page if True. 
+                    </p>
+                    <p>In place of the "flash()" call that we used earlier, now we can actually log the user in. The first step to load the user from the database. 
+                        The username came with the form submission, so we can query the database with that to find the user. For this purpose we're using the 
+                        "filter_by()" method of the SQLAlchemy query object. The result of this method is a query that only includes the objects that have the 
+                        matching username. Since we know there is only going to be one or zero results, the query is completed by calling the "first()" command, 
+                        which'll return the user object if it exists, or None if it doesn't. 
+                    </p>
+                    <p>If the username match was successful, we can then check if the password that also came with the form is valid. This is done by calling the 
+                        "check_password" method defined above. This will take the password hash stored with the user and determine if the password entered in the 
+                        form matches the hash or not. So now we have two possible error conditions: 
+                        <ol>
+                            <li>The username can be invalid</li>
+                            <li>The password can be incorrect for the user</li>
+                        </ol>
+                    </p>
+                    <p>Either way, a message is flashed, and the user gets redirected back to the login prompt so that the user can try logging in again.
+                    </p>
+                    <p>If both fields are correct, then we can call the "login_user()" function, which comes from Flask-Login. Finally, the user's reidrected to 
+                        the "index" page of the web application.
+                    </p>
+                    
+                    <h3><u>Logging Users Out</u></h3>
+                    <p>Flask has the "logout_user()" function already built in for us. All we have to do is add another view function to the "routes.py" file 
+                        and another hyperlink in the "base.html" file.
+                        <br><br><img src="./img/adding logout view function routes.jpg">
+                    </p>
+                    <p>Now, all we have to do is add some pretty simple logic to our hyperlinks in the "base.html" file. This is so that, if the user is already 
+                        logged in there'll be a "logout" button, but if they aren't, then there'll be a "login" button instead. They aren't if "is_anonymous" is True.
+                        <br><br><img src="./img/adding log logic.jpg">
+                    </p>
+                    
+                    <h3><u>Requiring Users To Login</u></h3>
+                    <p>Flask-Login provides a very useful feature that forces users to login before they can view certain pages of the application. Flask-Login will 
+                        automatically redirect a user that's trying to access restricted content to the user login form, and only redirect back to the page the user 
+                        was originally trying to access once they get logged in.
+                    </p>
+                    <p>For this, we just need to let Flask-Login know about which view function that handles logins. This'll be added in "__init__.py":
+                        <br><br><img src="./img/adding login view to init.jpg">
+                    </p>
+                    <p>The 'login' valule above is the function(or endpoint) name for the login view. In other words, the name you'd use in a "url_for()" call to 
+                        get the URL.
+                    </p>
+                    <p>The way Flask-Login protects a view function against anonymous users is with a decorator called "@login_required". When you add this decorator 
+                        to a view function below the "@app.route" decorators from Flask, the function becomes protected and will not allow access to users that aren't 
+                        authenticated. Here's how the decorator can be applied to the index view function of the application in the "routes.py" file:
+                        <br><br><img src="./img/adding decorator to routes for login thingy thing thing.jpg">
+                    </p>
+                    <p>What remains is to implement the redirect back from the successful login to the page the user wanted to access in the first place. What we want to 
+                        have happen is if the user navigates to the "index" page, for example, the "@login_required" decorator will intercept the request and respond with 
+                        a redirect to the "login" page, but it will add a query string argument to this URL, making the complete redirect URL /login?next=/index. The 
+                        "next" query string argument is set to the original URL, so the application can use that to redirect back after login. 
+                        <br><br><img src="./img/adding next page to login route.jpg">
+                    </p>
+                    <p>
                 
                 </section>     
                 
