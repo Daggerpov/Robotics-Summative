@@ -700,8 +700,34 @@
                         a hash of the user password, which will be used to verify the password entered by the user during login. Although, password hashing 
                         is pretty complicated and advanced, there's several libraries to help us with that. 
                     </p>
-                    <p>
+                    <p>Werkzeug, is a package we're going to implement to set and check a password. This'll be done in the "models.py" file under two functions 
+                        inside of the User class. 
+                        <br><br><img src="./img/adding werkzeug.jpg">
+                    </p>
+                    <p>These two methods are pretty self explanatory by reading the function names inside of them. Just don't forget to import the two packages from 
+                        werkzeyg.security. 
+                    </p>
 
+                    <h3><u>Introduction to Flask-Login</u></h3>
+                    <p>This popular Flask extension manages the user's logged-in state. This also provides the "remember me" functionality that allows users 
+                        to remain logged in even after closing the browser window. The first step to all of this though, is to - you guessed it, execute the install 
+                        command in the terminal for the extension. 
+                        <br><br><img src="./img/pip install flask-login.jpg">
+                    </p>
+                    <p>As with other extensions, Flask-Login needs to be created and initialized right after the application instance in "__init__.py". This is how:
+                        <br><br><img src="./img/adding flask login to init.jpg">
+                    </p>
+                    
+                    <h3><u>Setting Up The User Model</u></h3>
+                    <p>The Flask-Login extension works in tandam with the application's user model, and expects certain properties and methods to be 
+                        implemented in it. The four required items are listed below:
+                        <ul>
+                            <li>"is_authenticated": a property that's True if the user has valid credentials or False otherwise</li>
+                            <li>"is_activate": a property that's True if the user's account is activate or False otherwise</li>
+                            <li>"is_anonymous": a property that's False for regular users, and True for a sepcial, anonymous user</li>
+                            <li>"get_id": a method that returns a unique identifier for the user as a string</li>
+                        </ul>
+                    </p>
                 
                 </section>     
                 
