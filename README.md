@@ -7,6 +7,4 @@
     4. Sayf's plan for the website, in terms of where it's headed in the future
     5. Include the repository for RavenScout https://github.com/FusionStreak/RavenScout
 - I need to make the write-up file smaller, by including individual files for each chapter into the main write-up file
-- ask Sayf to make a little visualization of what the finished product of RavenScout would look like, as suggested by 
-Hassan
-- change colours of either h3 or h2 to differentiate a little bit better in the CSS file for write-up
+- ask Sayf to make a little visualization of what the finished product of RavenScout would look like
