@@ -605,6 +605,69 @@
                         though, I hope you can follow, since I don't think it's too complex just yet.  
                         <br><br><img src="./img/users and posts table.jpg">
                     </p>
+                    <p>The "posts" table will have the required "id", the "body" of the post and a "timestamp". In addition, though, is a "user_id" field, which 
+                        links the post to its author. The way to link a blog post to the user that authored it is to add a reference to the user's "id", and 
+                        that's exactly what the "user_id" field's for. The "user_id" field is called a foreign key. The database diagram above shows foreign 
+                        keys as a link between the field and the "id" field of the table it refers to. This kind of relationship is known as a "one-to-many", 
+                        because 'one' user writes 'many' posts. 
+                    </p>
+                    <p>Seeing as we now have another database table, we need to add a new corresponding class to the "models.py" file for the posts.
+                        <br><br><img src="./img/posts model added to models python.jpg">
+                    </p>
+                    <p>The new "Post" class will represent blog posts written by users. The "timestamp" field is going to be indexed, which is useful if 
+                        you want to retrieve posts in chronological order. We're also added a "default" argument, and passed the "datetime.utcnow" function. 
+                        When you pass a function as a default, SQLAlchemy will set the field to the value of calling that function. This is done by not including 
+                        the (), to signal that we don't want the value from calling that function, rather the function itself to be passed. In general, we want 
+                        to be working with UTC dates and times in a server application. This ensures that you're following the standard regardless of where 
+                        the users are located. These timestamps will be converted to the user's local time when they're displayed. 
+                    </p>
+                    <p>The "user_id" field was initialized as a foreign key to "user.id", which means that it references an "id" value from the users table. 
+                        In this reference the "user" part is the name of the database table for the model. 
+                    </p>
+                    <p>The "User" class now also has a new "posts" field, that is initialized with "db.relationship". This is not an actual 
+                        database field, but a high-level view of the relationship between users and posts, and for that reason it isn't in the 
+                        database diagram. For a "one-to-many" relationship, a "db.relationship" is normally defined on the "one" side, and is 
+                        used as a convenient way to get access to the "many". 
+                    </p>
+                    <p>The "backref" argument defines the name of a field that will be added to the objects of the "many" class that points back at the 
+                        "one" object. This will add a "post.author" expression that will return the user given a post. The "lazy" argument defines 
+                        how the database query for the relationship will be issued, which will be discussed later. 
+                    </p>
+                    <p>With a new update to the application models, a new update to the database migration needs to be made.
+                        <br><br><img src="./img/flask db migrate -m posts table.jpg">
+                    </p>
+                    <p>Now, for the upgrade command to finish it off:
+                        <br><br><img src="./img/flask db upgrade 2.jpg">
+                    </p>
+                    
+                    <h3><u>Testing Time</u></h3>
+                    <p>After suffering all this time trying to get the database setup, it's time to see how it all works. We could do this in the Python 
+                        interpreter, but the problem with that is: we would have to import our libraries before testing inside the interpreter. A fix to 
+                        this is something the "flask shell". It is an exact copy of the Python interpreter, only it imports things from the "microblog.py" 
+                        app for you by making a function for it in that file. 
+                        <br><br><img src="./img/flask shell setup.jpg">
+                    </p>
+                    <p>Now, with these configured symbols to pre-import before heading into the shell, we don't have to worry about doing it ourselves. 
+                        Also, with the shell, comes the application instance pre-imported, which means that anything in the "app.db" file for our database.
+                    </p>
+                    <p>The first step is getting into the shell by running the flask command. 
+                        <br><br><img src="./img/flask shell.jpg">
+                    </p>
+                    <p>Now that we're in, it should look exactly like the Python intrepreter. Let's start testing by creating a new user.
+                        <br><br><img src="./img/user in shell.jpg">
+                    </p>
+                    <p>Changes to a database are done in the context of a session, which can be accesses as "db.session". Multiple changes can be 
+                        accumulated in a session and once all the changes have been registered you can issue a single "db.session.commit()" command. If 
+                        at any time while working on a session there's an error, a call to "db.session.rollback()" will abort the sesison and remove any 
+                        changes stored in said session. 
+                    </p>
+                    <p>With all that said, let's add another user. 
+                        <br><br><img src="./img/second user in shell.jpg">
+                    </p>
+                    <p>Now that we have 2 users in our database, we can ask a query that returns all the users. 
+                        <br><br><img src="./img/user query all.jpg">
+                    </p>
+                    <p>
 
                 </section>
             </div>
