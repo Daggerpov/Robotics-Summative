@@ -1020,6 +1020,50 @@
                     <br><br><br><h2><a name="chapter7">Chapter 7: Error Handling</a></h2>
         
                     <h3><u>Error Handling In Flask</u></h3>
+                    <p>As it stands right now, we have a little bug in our code. It occurs when there's two or more users registered 
+                        on the website, you click on the edit_profile button, and then you try changing the username of another user 
+                        that's alread registered. What'll happen now, is you'll see this message pop up in your browser:
+                        <br><br><img src="./img/internal server error.jpg">
+                    </p>
+                    <p>This error will show a trace of itself in your terminal session. As well as, point to the line it came from. 
+                    </p>
+
+                    <h3><u>Debug Mode</u></h3>
+                    <p>Another thing you can see in the terminal that'll help with debugging errors is whether you have Debug mode set to 
+                        "on" or "off". This can be changed by setting it to 1(on) or 0(off). This is how you do it on Microsoft Windows: 
+                        <br><br><img src="./img/set flask_debug.jpg">
+                    </p>
+                    <p>On any other system(Mac or Linux), here's how to do it:
+                        <br><br><img src="./img/export flask_debug.jpg">
+                    </p>
+                    <p>Now, if you run the appplication, the output will be slightly different, being that Debugger will be activate and you'll 
+                        get a "Debugger PIN". 
+                        <br><br><img src="./img/debugger is active!.jpg">
+                    </p>
+                    <p>Now, if we make the application crash once more, you get to see the interactive debugger in your browser, instead of terminal.
+                        <br><br><img src="./img/interactive debugger in browser wow.jpg">
+                    </p>
+                    
+                    <h3><u>Custom Error Pages</u></h3>
+                    <p>Being that the two most common errors are HTTP errors 404 and 500, we're going to define custom pages for them, although it'll work for any type of error. 
+                    </p>
+                    <p>To declare a custom error handler, the "@erorrhandler" decorator is used. We're going to put our error handlers 
+                        in a new "errors.py" module inside of the "app" folder. 
+                        <br><br><img src="./img/errors python creation.jpg">
+                    </p>
+                    <p>These error functions work very similary to view functions. For these two errors, we're returning the contents 
+                        of their respective templates. 
+                    </p>
+                    <p>Note that both functions return a second value after the template and its arguments, which is the error code number. 
+                        This is because, for all the view functions that've been created so far, we didn't need to add a second return 
+                        value because the default of 200(the status code for a successful response) is what we've wanted. 
+                    </p>
+                    <p>To make sure any failed database sessions don't interfere with any database accesses triggered by the template, 
+                        we issue a session rollback. This resets the session to a clean state. 
+                    </p>
+                    <p>Here's the new template file called "404.html" inside of the "templates" folder:
+                        <br><br><img src="./img/404 template.jpg">
+                    </p>
                     <p>
 
             </div>
