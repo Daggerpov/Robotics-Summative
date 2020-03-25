@@ -866,6 +866,48 @@
                     <br><br><br><h2><a name="chapter6">Chapter 6: Profile Page and Avatars</a></h2>
         
                     <h3><u>User Profile Page</u></h3>
+                    <p>Let's start of with a new view function that maps to the "/user/(username)" URL in the "routes.py" file.
+                        <br><br><img src="./img/new user-username route.jpg">
+                    </p>
+                    <p>In this @app.route decorator used to declare this view function, we have a dynamic component in it, which is indicated as the /username 
+                        URL component that's surrounded by < and >. When a route has a dynamic component, Flask will accept any text in that portion of the 
+                        URL, and will invoke the view function with the actual text as an argument. For example, if the client browser requests URL /user/susan, 
+                        the view function is going to be called with the argument "username" set to 'susan'. Since, we only want logged in users to access 
+                        this view function, we've added the @login_required decorator from Flask-Login
+                    </p>
+                    <p>We simply do the same as we did earlier, trying to load the user from out database using a query by the username, and if it's not found 
+                        as "first()", then a 404 error will occur in the browser. Then, if successful, we initialize a fake list of posts for this user. 
+                        Although these need to be rendered in a new "user.html" template file. 
+                        <br><br><img src="./img/user html creation.jpg">
+                    </p>
+                    <p>Finally, we need to add another link to our "base.html" file's links div. 
+                        <br><br><img src="./img/new link for profile'.jpg">
+                    </p>
+                    <p>Here, we're just using Flask-Login's "curernt_user" to generate the correct URL inside of the "url_for()" function's parameters.
+                        This is to point to the right view function in "routes.py" for the appropriate user. 
+                    </p>
+                    <p>Feel free to test out the application now. This is what you should see once you've registered a user, logged in, and clicked on the 
+                        profile hyperlink:
+                        <br><br><img src="./img/daniel profile 1.jpg">
+                    </p>
+                    
+                    <h3><u>Avatars</u></h3>
+                    <p>So far the profile pages we've made for users are pretty boring. Well, it's time to change them up with some avatars. To do this, 
+                        we'll be using the Gravatar service to provide images for all users, instead of having a possibly large collection of uploaded images 
+                        in the server. 
+                    </p>
+                    <p>The Gravatar service is very simple to use. To request an image for a given user, a URL iwth the format "https://www.gravatar.com/avatar/(hash)", 
+                        where "hash" is the MD5 hash of the user's email address. More on this later in the code. 
+                    </p>
+                    <p>By default the image size returned is 80x80 pixels, but a different size can be requested by adding an "s" argument to the URL's 
+                        query string in the URL. Another argument that can be passed to Gravatar as a query string is "d", which determines that image 
+                        Gravatar provides for users that don't have an avatar registered with the service. 
+                    </p>
+                    <p>Note that if you don't see avatars in your browser, it may be due to an extension that you've installed in your browser. 
+                    </p>
+                    <p>Now, we're just going to add an "avatar" method to the "user" class with the "self" and "size" parameters. 
+                        <br><br><img src="./img/adding avatar method to user.jpg">
+                    </p>
                     <p>
                 
                 </section>
