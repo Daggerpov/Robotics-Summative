@@ -1025,7 +1025,7 @@
                         that's alread registered. What'll happen now, is you'll see this message pop up in your browser:
                         <br><br><img src="./img/internal server error.jpg">
                     </p>
-                    <p>This error will show a trace of itself in your terminal session. As well as, point to the line it came from. 
+                    <p>This error will show a stack trace of itself in your terminal session. As well as, point to the line it came from. 
                     </p>
 
                     <h3><u>Debug Mode</u></h3>
@@ -1073,7 +1073,53 @@
                     <p>Now, if you set "FLASK_DEBUG=0" again in your terminal session and then trigger the duplicate username bug one more 
                         time, you're going to see a more friendly error page. 
                     </p>
-                    <p>
+                    
+                    <h3><u>Sending Errors by Email</u></h3>
+                    <p>I think we can all agree that having to constantly monitor the terminal and see what errors occur that way is a hassle. 
+                        It's for that reason that we would want a feature implemented to just notify us by email, or at least in a more convenient 
+                        manner than through the terminal. 
+                    </p>
+                    <p>Another reason for this, is because there won't be any output in the terminal while your web application is desployed 
+                        in a production server, unlike in a development server, like what we've been using. 
+                    </p>
+                    <p>So, we want to receive an email with the error right away, along with the stack trace of the error in the email body. 
+                        The first step is to add the email server details to the configuration file like so:
+                        <br><br><img src="./img/adding mail server config.jpg">
+                    </p>
+                    <p>You can set the admins' emails to whichever you'd like, and have multiple of them in this list. 
+                    </p>    
+                    <p>The configuration variables for email include: 
+                        <ol>
+                            <li>The mail server, which, if not set in the environment, will be used as a sign that emailing errors needs to be disabled</li>
+                            <li>The mail port, that can also be given in an environment variable, but if not set, the standard port 25 is used</li>
+                            <li>A boolean flag to enable encrypted connections using TLS(Transport Layer Security) from server to server</li>
+                            <li>An optional username</li>
+                            <li>An optional password</li>
+                        </ol>
+                    </p>
+                    <p>Flask uses Python's "logging" package to write its logs, which already has the ability to send logs by email.
+                        All we need to do to get emails sent out on errors is to add a SMTPHandler instance to the Flask logger object, which is "app.logger". 
+                        <br><br><img src="./img/logging ting init python.jpg">
+                    </p>
+                    <p>As indicated by "app.debug" being True, we'll only have the email logger enabled when the application is running without 
+                        debug mode(on a production server), and also when the email server exists in the configuration. 
+                    </p>
+                    <p>In essense, the code above creates a STMPHandler instance, sets its level so that it only reports errors and not warnings, 
+                        informational or debugging messages, and finally attaches it to the "app.logger" object from Flask.
+                    </p>
+                    
+                    <h3><u>Testing This Feature</u></h3>
+                    <p>There's actually two methods to testing out this feature that we'll see right below. 
+                    </p>
+                    <ol>
+                        <li>First approach:</li>
+                        <p>The easier one is to use the SMTP debugging server from Python. This is a fake email server that accepts emails, but 
+                            instead of sending them, it prints them to the console. To run this server, open a second terminal session and run 
+                            the following command on it:
+                            <br><br><img src="./img/method 1 easier.jpg">
+                        </p>
+                        
+                        <li>Second approach</li>
 
             </div>
         </section>
