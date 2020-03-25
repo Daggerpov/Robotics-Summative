@@ -470,6 +470,7 @@
                     <ol>
                         <li>base.html <br><br><img src="./img/new url_for method implementation.jpg"></li>
                         <li>routes.py <br><br><img src="./img/url_for implementation.jpg"></li>
+                    </ol>
 
                 </section>
                 
@@ -667,9 +668,45 @@
                     <p>Now that we have 2 users in our database, we can ask a query that returns all the users. 
                         <br><br><img src="./img/user query all.jpg">
                     </p>
-                    <p>
+                    <p>All database models have a "query" attribute that's the entry point to run database queries. The most basic query is 
+                        that one that returns all elements of that class. Also, since we indexed the "username" field, the "id" fields were automatically 
+                        set to 1 and 2 when they were added. 
+                    </p>
+                    <p>However, instead of doing a query to retrieve all users in a database, you can also locate one using the "id" of that user. 
+                        <br><br><img src="./img/get user by index shell.jpg">
+                    </p>
+                    <p>Now, let's add a mock blog post. 
+                        <br><br><img src="./img/new mock post shell.jpg">
+                    </p>
+                    <p>Since, we set a default value for the "timestamp" class attribute, we don't need to set it. As for the "user_id" field, we have a 
+                        "db.relationship" setup between the "User" class and the post, because the class adds a "posts" attribute to users, and also an 
+                        author attribute to posts. We went about assigning an turho to this post using the "author" virtual field instead of having to deal 
+                        with user IDs, which we don't have setup yet. 
+                    </p>
+                    <p>Now, to end this chapter off, we need to clean the shell so that there's no existing users and posts in our database for chapters to come.
+                        <br><br><img src="./img/resetting shell, deleting posts and users.jpg">
+                    </p>
 
                 </section>
+                
+                
+                
+                <section id="chapter5">
+
+                    <br><br><br><h2><a name="chapter5">Chapter 5: User Logins</a></h2>
+        
+                    <h3><u>Password Hashing</u></h3>
+                    <p>Time to address the "password_hash" field of the user model, that's gone unused thus far. The purpose of this field is to contain 
+                        a hash of the user password, which will be used to verify the password entered by the user during login. Although, password hashing 
+                        is pretty complicated and advanced, there's several libraries to help us with that. 
+                    </p>
+                    <p>
+
+                
+                </section>     
+                
+                
+
             </div>
         </section>
 
