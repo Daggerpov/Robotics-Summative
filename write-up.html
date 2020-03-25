@@ -47,7 +47,7 @@
                         <li><a href="#chapter4">Chapter 4: Database</a></li>
                         <li><a href="#chapter5">Chapter 5: User Logins</a></li>
                         <li><a href="#chapter6">Chapter 6: Profile Page and Avatars</a></li>
-                        <li>Chapter 7: Error Handling</li>
+                        <li><a href="#chapter7">Chapter 7: Error Handling</a></li>
                         <li>Chapter 8: Followers</li>
                     </ul>
                 </article>
@@ -908,9 +908,116 @@
                     <p>Now, we're just going to add an "avatar" method to the "user" class with the "self" and "size" parameters. 
                         <br><br><img src="./img/adding avatar method to user.jpg">
                     </p>
-                    <p>
-                
+                    <p>This method returns the URL of the user's avatar image, scaled to the requested size in pixels. If they don't have one registered, 
+                        it'll generate an "identicon" image, an image that'll look different for every user based on their email hash. 
+                    </p>
+                    <p>To generate the MD5 email hash, the email first gets converted to lowercase by calling Python's "lower()" function. Then, because the 
+                        MD5 support in Python works on bytes and not on strings, we encode the string as bytes before passing it on to the hash function.
+                    </p>
+                    <p>Next up, is inserting the avatar images in the user profile template.
+                        <br><br><img src="./img/adding avatar to user template.jpg">
+                    </p>
+                    <p>Now, we have a big avatar next to the user name on the top of the page, but we could also use some little avatars next to their 
+                        posts on the bottom. For this, we just need to make a small change to the template. 
+                        <br><br><img src="./img/new little avatars in user template.jpg">
+                    </p>
+                    <p>Now, if we test this out on our browser, it should look like this:
+                        <br><br><img src="./img/how it should look with avatars little and big.jpg">
+                    </p>
+                    <p>If you're interested in changing the avatars displayed on your website, just follow <a href="https://en.gravatar.com/">this link</a>
+                        and sign in with the same email used for your registered user on the web application. Then just upload an image like I have here:
+                        <br><br><img src="./img/setting up gravatar image.jpg">
+                    </p>
+                    
+                    <h3><u>Using Jinja2 Sub-Templates</u></h3>
+                    <p>We now want for all posts written by the user to be displayed on the "index" page. To do this, we're going to make a sub-template 
+                        that just renders one post, and then we're oging to reference it from both the "user.html" and "index.html" templates. To begin, 
+                        we can create the sub-template, with just the HTML for a single post. We're going to be naming this template "_post" in the "templates" 
+                        folder. The _ prefix to the name is just a convention used to describe sub-templates. 
+                        <br><br><img src="./img/_post creation.jpg">
+                    </p>
+                    <p>We're now going to include this sub-template into the "user.html" template using Jinja2's "include" statement.
+                        <br><br><img src="./img/including post in user">
+                    </p>
+                    
+                    <h3><u>More Profile Additions</u></h3>
+                    <p>We're going to create "about me" and "last_seen" class attributes for the "user" in the "models.py" file.
+                        <br><br><img src="./img/adding two new attributes to user.jpg">
+                    </p>
+                    <p>Now that we've changed the database structure, we need to generate a database migration, and then apply this change to the database.
+                        <br><br><img src="./img/adding two new fields to db.jpg">
+                    </p>
+                    <p>The next step, is to add these two new fields to the user profile template in its "user.html" file.
+                        <br><br><img src="./img/adding two new fields to user template.jpg">
+                    </p>
+                    <p>We're wrapping these two fields in Jinja2's conditionals, since we only want them to be visible if they're set. Which, they won't be
+                        if you fun the application now.
+                    </p>
+                    
+                    <h3><u>Recording The Last Visit Time</u></h3>
+                    <p>All we want to do for the "last_seen" field of the "User" class is write the current time on this field for a given user whenever 
+                        that user sends a request to the server. 
+                    </p>
+                    <p>This new function in the "routes.py" file will execute a bit of generic logic ahead of a request to a view function. 
+                        <br><br><img src="./img/adding interception datetime ting.jpg">
+                    </p>
+                    <p>The "@before_request" decorator from Flask executes right before the view function. This means that this code we've just typed up 
+                        will automatically be inserted before any view function in the application. 
+                    </p>
+                    <p>The "current_user" is already invoked in the database from referencing it earlier, making it so that we don't need to run a "db.session.add()" 
+                        command before the commit. 
+                    </p>
+                    <p>Now, if you go check your profile, you'll notice this new feature implemented, and if you navigate away from this page and come back, also 
+                        notice that it constantly updates. 
+                    </p>
+                    
+                    <h3><u>Profile Editor</u></h3>
+                    <p>Now that we've added an "about_me" field to the "User" class, we need to give users a form in which they can enter some information about 
+                        themselves. The form is going to let users change their username, and also write something about themselves. So, let's now write a new 
+                        form class in the "forms.py" file. 
+                        <br><br><img src="./img/adding editprofileform.jpg">
+                    </p>
+                    <p>This new "TextAreafield" field type is used to provide a multi-line box in which the user can enter text into. To validate this form, 
+                        we've also added the "Length" validator, which will make sure that the text entered is between 0 and 140 characters, which is the space 
+                        we've allocated for the corresponding field in the database.
+                    </p>
+                    <p>Now, for the new "edit_profile.html" file in the "templates" folder.
+                        <br><br><img src="./img/new edit profile template.jpg">
+                    </p>
+                    <p>Finally, here's the view function that'll tie everything altogether:
+                        <br><br><img src="./img/adding editprofileform view function to routes python.jpg">
+                    </p>
+                    <p>There's a few differences between this form and the other two we've previously made. If "validate_on_submit()" returns True, 
+                        we copy the data from the form into the user object and then write the objec to the database. However, when it returns False, 
+                        it can be due to 2 different reasons: 
+                        <ol>
+                            <li>It can be because the browser just send a "GET" request, which we need to respond by providing an initial version of the form template </li>
+                            <li>It can also be when the browser sends a "POST" request with form data, but something in that data is invalid. 
+                        </ol>
+                    </p>
+                    <p>For this form, we need to treat these two cases separately. When the form is being requested for the first time with a "GET" request, 
+                        we want to pre-populate the fields with the data that's stored in the database, so we need to do the reverse of what we did on 
+                        the submission case and move the data stored in the user fields to the form, as this will ensure that those form fields have the current 
+                        data sotred for the user. In the case of a validation eror, though, we don't want to write anything to the form fields, because those 
+                        were already populated by WTForms. To distinguish between these two cases, we check "request.method". 
+                    </p>
+                    <p>To make this new page easily-accessible, we can add a link in their profile page.
+                        <br><br><img src="./img/adding edit profile link to user.jpg">
+                    </p>
+                    <p>We added this conditional beside it that that the link appears only when you're viewing your own profile, but not when you're viewing 
+                        someone else's. 
+                    </p>
+
                 </section>
+                
+                
+                
+                <section id="chapter7">
+
+                    <br><br><br><h2><a name="chapter7">Chapter 7: Error Handling</a></h2>
+        
+                    <h3><u>Error Handling In Flask</u></h3>
+                    <p>
 
             </div>
         </section>
