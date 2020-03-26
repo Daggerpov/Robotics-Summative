@@ -1340,7 +1340,73 @@
                     </p>
                     
                     <h3><u>Adding And Removing 'Follows'</u></h3>
-                    <p>
+                    <p>Thanks to the SQLAlchemy ORM, a user following another user can be recorded in the database working with the 
+                        "followed" relationship as if it was a list. This is done just by appending the followed users to a list and removing 
+                        them to 'unfollow'. 
+                    </p>
+                    <p>Even though this method of adding and and removing followers is fairly easy, we want to promote reusability in our code, 
+                        so we're not going to put a bunch of 'appends' and 'removes' though the code. Instead, we're going to implement the "follow" 
+                        and "un follow" functionality as methods in the "User" class inside the "models.py" file(or, the "User" model). It's always 
+                        best to move the application logic away form view functions and into models or other auxiliary classes or modules, because 
+                        it makes unit testing much easier, as you'll see later in this chapter.
+                        <br><br><img src="./img/adding following methods to user model.jpg"> 
+                    </p>
+                    <p>The "follow()" and "unfollow()" methods justuse the "append()" and "remove()" methods of the relationship object as 
+                        explained above, but beofre they affect the relationship, they use the "is_following()" supporting method to make sure 
+                        the requested action makes sense, meaning they're not already following this user to 'follow' them, or are already following 
+                        the user to 'unfollow' them. 
+                    </p>
+                    <p>The "is_following()" method issues a query on the "followed" relationship to check if a link between two users already exists. 
+                        We're used the "filter_by()" method of the SQLAlchemy query object before, from when we found a user given its username. 
+                        The "filter()" method that we're using here is similar, but can include arbitrary filtering conditions, unlike "filter_by()" 
+                        which can only check for equality to a constant value. The condition that we're using in the "is_following()" method looks for 
+                        items in the association table that have the left side foreign key set to the "self" user, and the right side set to the "user" argument. 
+                        the query is terminated with a "count()" method, which returns the number of results(which'll either be 0 or 1). Other query 
+                        terminators we've used in the past have been "all()" and "first()". 
+                    </p>
+                    
+                    <h3><u>Obtaining Posts From Followed Users</u></h3>
+                    <p>In the index page of the application, we want to show blog posts written by all the people that are followed by the 
+                        logged in user, much like you'd see on Instagram. To do this, we need to come up with a database query that returns 
+                        these posts. 
+                    </p>
+                    <p>An obvious way to do this is to obtain all followed users by "user.followed.all()" and then iterating through each user 
+                        to display their posts. Then, we could merge these posts into a single list and sort them by date. 
+                    </p>
+                    <p>However, this approach has a few of problems:
+                        <ol>
+                            <li>Executing an infinitely large amount of database queries depending on how many users the logged in user's following 
+                                would take a while.</li>
+                            <li>We'd need to merge and sort these infinite number of posts in memory.</li>
+                            <li>Consider that the home page will eventually have 'pagination' implemented, so it won't display all the available posts, 
+                                but just the first few, with a link to get more if desired(like Instagram)</li>
+                        </ol>
+                    </p>
+                    <p>There's actually no way to avoid this merging and sorting of blog posts, but doing it in the application itself results 
+                        in a very inefficient process. This kind of work is what relational databases excel at, and can help us with. The database 
+                        has indexes that allow it to perform the queries and the sorting in a much more efficient way. So, what we really want 
+                        is to come up with a single database query that defines the information that we want to get, and then let the database 
+                        figure out how to extract that information in the most efficient way on its own. Let's go ahead and write this query under 
+                        a new method in the "User" model. 
+                        <br><br><img src="./img/new followerd_posts method in user model to show index page posts.jpg">
+                    </p>
+                    <p>Okay, since this is a fairly complex query, I'll go through it one method of the SQLAlehcmy query object at a time. 
+                    </p>
+                    
+                    <h3><u>Join()</u></h3>
+                    <p>Let's look at an example of what the join operation does. Let's assume that we have a "User" table with the following contents:
+                        <br><br><img src="./img/joins 1 (1).jpg">
+                    </p>
+                    <p>For this example, we'll only be looking at these two fields of the user, since they're the only ones that matter right now. 
+                        However, if there were to be more fields to add, you'd just add more columns to each user. 
+                    </p>
+                    <p>This is what the association table would then look like for this example, rather than the "student_teacher" many-to-many relationship. 
+                        <br><br><img src="./img/followers association table (1).jpg">
+                    </p>
+                    <p>This just shows practical examples of who's following who modeled in another diagram. 
+                    </p>
+                    <p>Finally, the posts table would contain one post from each user. 
+                        <br><br><img src="./img/"
 
             </div>
         </section>
