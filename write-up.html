@@ -1647,6 +1647,34 @@
                         <br><br><img src="./img/explore page 1.jpg">
                         <br><br><img src="./img/explore page 2.jpg">
                     </p>
+                    
+                    <h3><u>Page Navigation</u></h3>
+                    <p>The next change we need to implement is to add links at the bottom of the blog post list that allow 
+                        users to navigate to the next and/or previous pages. 
+                    </p>
+                    <p>Earlier you learned that the return value from a "paginate()" call is an object of a Pagination class form Flask-SQLAlchemy, 
+                        and that one of its attributes was "items". Now, we're going to use another 4 of its attributes: 
+                        <ul>
+                            <li>"has_next": True if there's at least one more page after the current one</li>
+                            <li>"has_prev": True if there's at least one more page before the current one</li>
+                            <li>"next_num": The page number for the next page</li>
+                            <li>"prev_num": The page number for the previous page</li>
+                        </ul>
+                    </p>
+                    <p>With these four attributes, we can generate next and previous page links and pass them down to the templates for rendering in the "routes.py" file.
+                        <br><br><img src="./img/adding next and prev urls to index view function.jpg">
+                    </p>
+                    <p>The "next_url" and "prev_url" in these two view functions are going to be set to a URL reutrned by "url_for()" only 
+                        if there's a page in that direction. If the current page is at one of the ends of the collection of posts(beginning or end), 
+                        then the "has_next" or "has_prev" attributes of the Pagination object will be False, and in that case the link in that 
+                        direction will be set to None. 
+                    </p>
+                    <p>The pagination links are being set to the "index.html" template, so now let's render them on the page, right below the post list:
+                        <br><br><img src="./img/adding next and prev url to index template.jpg">
+                    </p>
+                    <p>Here are the changes we've just made to the application in action: 
+                        <br><br>
+                    </p>
 
 
             </div>
