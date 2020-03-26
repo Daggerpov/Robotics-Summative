@@ -1406,7 +1406,48 @@
                     <p>This just shows practical examples of who's following who modeled in another diagram. 
                     </p>
                     <p>Finally, the posts table would contain one post from each user. 
-                        <br><br><img src="./img/"
+                        <br><br><img src="./img/posts table.jpg">
+                    </p>
+                    <p>This table leaves out some fields, though. These being, who's the 'follower' user and who's the 'followed' user, which we can 
+                        obtain by using the "join()" method of the SQLAlchemy query object. 
+                    </p>
+                    <p>Once again, here's the join() call that was defined for this query:
+                        <br><br><img src="./img/join method isolated.jpg">
+                    </p>
+                    <p>This is why we are invoking the join operatin gon the posts table. The first argument is the followers association table, 
+                        and the second argument is the join condition. What we're saying with this call is that we want the database to create a 
+                        temporary table that combines data form posts and followers tables. This data will be merged according to the condition.
+                    </p>
+                    <p>The condition that we used states that the "followed_id" field of the followers table must be equal to the "user_id" of the 
+                        posts table. To perform this merge, the database will take each record from the posts table(left side of the join) and append 
+                        any records from the "followers" table(the right side of the join) that match the condition. If multiple records in "followers" 
+                        match the condition, then the post entry will be repeated for each. If for a given post there's no match in 'followers', then 
+                        that post record is not part of the join. 
+                    </p>
+                    <p>Now, the result of the join operation with the example data defined above will result in a table that looks like this: 
+                        <br><br><img src="./img/joined followers and posts tables .jpg">
+                    </p>
+                    <p>If these values seem complicated to you, just backtrack and look at the previous followers and posts tables to see 
+                        how they merged together. If the values in the followers table don't make sense to you, just look back at the 
+                        original users table with just the ids and usernames. 
+                    </p>
+                    <p>Note that the "user_id" and "followed_id" columns are always equal, as this was the result of the join condition being True. 
+                    </p>
+                    
+                    <h3><u>Filter()</u></h3>
+                    <p>The join operation gave us a list of all the posts that are followed by some user, which is a lot more data than what's 
+                        needed for one specific user. We're only really interested in the posts from followed users as it pertains to the logged in 
+                        user. Since, we're only interested in a subset of this list, the posts followed by a single user, we need to trim all the 
+                        entries that aren't needed, which can be done with a "filter()" call. 
+                    </p>
+                    <p>Once again, here's the filter() call that was defined for this query: 
+                        <br><br><img src="./img/filter method isolated.jpg">
+                    </p>
+                    <p>Since, this query is in a method of class "User", the "self.id" expression refers to the user ID of the user that's 
+                        currently logged in. The "filter()" call selects the items in the joined table that have the "follower_id" column set to 
+                        this user, which in other words means that we're keeping only the entries that have this user as a follower(or, are followed by this user).
+                    </p>
+                    <p>Let's say the user that's logged in is "bogar". 
 
             </div>
         </section>
