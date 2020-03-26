@@ -1542,14 +1542,58 @@
                     <br><br><br><h2><a name="chapter9">Chapter 9: Pagination</a></h2>
         
                     <h3><u>Blog Post Submission</u></h3>
-                    <p>First, we need a new form on the home page in which users can type new posts in the "index.html" file.
+                    <p>Let's start with a form in which users can type new posts. First we create a form class in the "forms.py" file. 
+                        <br><br><img src="./img/adding post form to forms python.jpg">
+                    </p>
+                    <p>Next, we need a new form on the home page  of the application in which users can type new posts in the "index.html" file.
                         <br><br><img src="./img/adding posts to index.jpg">
                     </p>
                     <p>Now, we need to add the form creation and handling in the view function in the "routes.py" file. 
                         <br><br><img src="./img/adding post to index route.jpg">
                     </p>
-                    <p>
+                    <p>These are all the changes made in this view function:
+                        <ul>
+                            <li>We're now importing the "Post" and "PostForm" classes.</li>
+                            <li>We accept "POST" requests in both routes associated with the "index" view function in addition to "GET" requests, 
+                                since this view function will now receive form data.</li>
+                            <li>The form processing logic inserts a new "Post" record into the database.</li>
+                            <li>The template receives the "form" object as an additional argument, so that it can render the text field.</li>
+                        </ul>
+                    </p>
+                    <p>You may be wondering why there's a redirect back to the same page that the user's already going to be on. Well, this 
+                        is done to mitigate an annoyance with how the refresh command is implemented in web browsers. All the web browser does 
+                        when you hit the refresh key is to re-issue the last request. If a "POST" request with a form submission returns a regular 
+                        response, then a refresh will re-submit the form. Since, this is unexpected, the browser is going to ask the user to confirm 
+                        the duplicate submission, but most users will not understand what the browser is asking from them. However, if a "POST" request 
+                        is answered with a redirect like the one we have, the browser is now instructed to send a "GET" request to grav the page 
+                        indicated in the redirect, making our application work in a more predictable way. 
+                    </p>
+                    <p>This simple trick is called the <a href="https://en.wikipedia.org/wiki/Post/Redirect/Get"> Post/Redirect/Get pattern. 
+                    </p>
                     
+                    <h3><u>Removing Fake Blog Posts</u></h3>
+                    <p>We can now replace our two fake blog posts in the "index" view function with real ones. 
+                        <br><br><img src="./img/removing fake posts.jpg">
+                    </p>
+                    
+                    <h3><u>Explore Page</u></h3>
+                    <p>We're now going to make a page that'll address the issue of not being able to find other users(without manually typing 
+                        in their profile URLs). Here's the new explore view function: 
+                        <br><br><img src="./img/explore view function added.jpg">
+                    </p>
+                    <p>We're actually reusing the "index" template in rendering this one's template, since they'll be so similar. Hence, why we 
+                        added 'index.html' into the arguments of the "render_template()" function. One difference with the main page is that in the 
+                        explore page, we don't want to have a form to write blog posts, so in this view function we didn't include the "form" 
+                        argument in the template call. 
+                    </p>
+                    <p>To prevent the "index.html" template from crashing when it tries to render a web form that doesn't exist, we're going to add 
+                        a conditional that only renders the form if it's defined. 
+                        <br><br><img src="./img/adding conditional to index.jpg">
+                    </p>
+                    <p>We're also going to add a link to this new page in the navigation bar in the "base.html" file. 
+                        <br><br><img src="./img/adding link to explore in base.jpg">
+                    </p>
+                    <p>
 
             </div>
         </section>
