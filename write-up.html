@@ -1495,7 +1495,18 @@
                         <br><br><img src="./img/tests py 1.jpg">
                         <br><br><img src="./img/tests py 2.jpg">
                     </p>
-                    <p>
+                    <p>I know it's a lot of code just for some tests, but here we've added four tests that exercise the password hashing, 
+                        user avatar and followers functinality in the "User" model. The "setUp()" and "tearDown()" methods are special methods 
+                        that the unit testing framework execute before and after each test...much like when Mr. Morrison says to tear down and 
+                        get set up. 
+                    </p>
+                    <p>We've implemented a little feature in "setUp()" to prevent the unit tests from using the regular database that we use for development. 
+                        by changing the application configuration to "sqlite://" we get SQLAlchemy to use an in-memory SQLite database during the tests. 
+                        The "db.create_all()" call creates all the database tables. This is a quick way to create a database from scratch 
+                        that's useful for testing. For development nad production use we've already seen how to create database migrations. 
+                    </p>
+                    <p>Now that the tests are set up, we can run this file using the "python" command in the terminal like so:
+                        <br><br><img src="./img/"
 
             </div>
         </section>
