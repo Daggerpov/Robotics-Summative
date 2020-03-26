@@ -49,6 +49,7 @@
                         <li><a href="#chapter6">Chapter 6: Profile Page and Avatars</a></li>
                         <li><a href="#chapter7">Chapter 7: Error Handling</a></li>
                         <li><a href="#chapter8">Chapter 8: Followers</a></li>
+                        <li><a href="#chapter9">Chapter 9: Pagination</a></li>
                     </ul>
                 </article>
                 
@@ -1506,7 +1507,43 @@
                         that's useful for testing. For development nad production use we've already seen how to create database migrations. 
                     </p>
                     <p>Now that the tests are set up, we can run this file using the "python" command in the terminal like so:
-                        <br><br><img src="./img/"
+                        <br><br><img src="./img/tests ran successfully.jpg">
+                    </p>
+                    
+                    <h3><u>Integrating Followers</u></h3>
+                    <p>After all that database stuff, we can finally actually implement this new system for followers into our web application. 
+                        Though, there aren't any new concepts here for you to understand. We just need to add two new routes in the application 
+                        to follow and unfollow a user in the "routes.py" file. 
+                        <br><br><img src="./img/adding two new routes to routes python for followers.jpg">
+                    </p>
+                    <p>These should be self-explanatory, but take notice to all the error checking that we're doing to prevent unexpected 
+                        issues and try to provide a useful message to the user when a problem has occured.
+                    </p>
+                    <p>With these new view function(or routes) in place, we can link to them form pages in the application. we're going to 
+                        add links to follow and unfollow a user in the profile page of each user. 
+                        <br><br><img src="./img/adding followers and followed to user template.jpg">
+                    </p>
+                    <p>This now adds a line below the last seen timestamp that shows how many followers and followed users this user has. 
+                    </p>
+                    <p>The other line that has the "Edit" link when you are viewing your own profile can now have one of three possible links: 
+                        <ol>
+                            <li>If the user is viewing their own profile, the "Edit" link shows as before.</li>
+                            <li>If the user is viewing a user that's not currently followed, the "Follow" link shows.</li>
+                            <li>If the user is viewing a user that's currently followed, the "Unfollow" link shows.</li>
+                        </ol>
+                    </p>
+
+                </section>
+                    
+                    
+                    
+                <section id="chapter9">
+
+                    <br><br><br><h2><a name="chapter9">Chapter 9: Pagination</a></h2>
+        
+                    <h3><u>Blog Post Submission</u></h3>
+                    <p>
+                    
 
             </div>
         </section>
