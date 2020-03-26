@@ -1624,7 +1624,30 @@
                         the list of items in the requested page.
                     </p>
                     <p>Now, let's start by adding a configuration item to the application that determines how many items will be displayed per page. 
-                        <br><br><img src="./img/"
+                        <br><br><img src="./img/adding posts per page to config object.jpg">
+                    </p>
+                    <p>This single adjustment to the Config class will be applied throughout the entire web application. 
+                    </p>
+                    <p>Next, we need to use a query string argument to specify an optional page number, defaulting to page 1 if it's not given. 
+                        Here are some example URLs that show how we're going to implement this: 
+                        <ul>
+                            <li>Page 1, implicit: http://localhost:5000/index</li>
+                            <li>Page 1, explicit: http://localhost:5000/index?page=1</li>
+                            <li>Page 3: http://localhost:5000/index?page=3</li>
+                        </li>
+                    </p>
+                    <p>In order to access arguments given in the query string, we can use the Flask's "request.args" object. We've 
+                        seen this already in <a href="#chapter5">Chapter 5</a>, where we implemented user login URLs from Flask-Login 
+                        that can include a "next" query string argument. 
+                    </p>
+                    <p>Below, you can see how we're adding pagination to the home and explore view functions: 
+                        <br><br><img src="./img/adding page thing to index and explore.jpg">
+                    </p>
+                    <p>Make sure you have at least 3 blog posts, then go ahead and try this out in your browser's address bar like so:
+                        <br><br><img src="./img/explore page 1.jpg">
+                        <br><br><img src="./img/explore page 2.jpg">
+                    </p>
+
 
             </div>
         </section>
