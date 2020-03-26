@@ -1270,6 +1270,24 @@
                     <p>Both tables have a primary key, like the one-to-many relationship. The foreign key goes on the 'many' side of the relationship. 
                         The foreign key points to a primary key in a table on the 'one' side of the relationship.
                     </p>
+
+                    <h3><u>One-To-One</u></h3>
+                    <p>This is actually a special case of a one-to-many relationship. The representation is similar, but a constraint is 
+                        added to the database to prevent the 'many' side to have more than one link. It's not a very common type of relationship, 
+                        but it may come up some day for you. 
+                    </p>
+                    
+                    <h3><u>Representing Followers</u></h3>
+                    <p>Alright, now that we've established and hopefully understood the basic data relationships there are, let's get back to 
+                        our application. For microblog, we're going to need a "many-to-many" relationship to track followers, because a user 
+                        follows 'many' users, and a user has 'many' followers. However, since users are just following each other, and not another 
+                        table like in the student_teacher example, we need to do it slightly differently. 
+                    </p>
+                    <p>The second entity of the relationship(instead of teachers being the second entity for students) is also the users. A relationship 
+                        in which instances of a class are linked to other instances of the same class is called a self-referential relationship. 
+                    </p>
+                    <p>Here's a diagram of the self-referential "many-to-many" relationship that keeps track of followers:
+                        <br><br><img src="./img/followers table users.jpg"
                         
 
             </div>
