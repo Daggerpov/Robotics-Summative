@@ -48,7 +48,7 @@
                         <li><a href="#chapter5">Chapter 5: User Logins</a></li>
                         <li><a href="#chapter6">Chapter 6: Profile Page and Avatars</a></li>
                         <li><a href="#chapter7">Chapter 7: Error Handling</a></li>
-                        <li>Chapter 8: Followers</li>
+                        <li><a href="#chapter8">Chapter 8: Followers</a></li>
                     </ul>
                 </article>
                 
@@ -1125,9 +1125,98 @@
                         <p>Remember that on Mac/Linux, you need to type "export" instead of "set". 
                             <br><br><img src="./img/exporting the flask debug.jpg">
                         </p>
-                        <p>
+                        <p>Now, set the MAIL_SERVER=localhost and MAIL_PORT=8025 in the virtual environment. 
+                            <br><br><img src="./img/setting mail stuff in terminal.jpg">
+                        </p>
+                        <p>Now, it's time to run the application and trigger the error once again, and see what arrives in your email inbox. 
+                        </p>
+                        <p>Don't worry if you didn't get an email, though. Since, your Gmail account may prevent the application from 
+                            sending emails through it unless you explicitly allow "less secure apps" access to your Gmail account. However, 
+                            I tried setting this up in my gmail account, and found out that Google now only lets G-Suite accounts access 
+                            these settings.
+                        </p>
                         
                         <li>Second approach</li>
+                        <p>This second approach is a little bit harder, since you're configuring a real email server. Below is the configuration 
+                            to use your Gmail account's email server. 
+                            <br><br><img src="./img/setting up harder way 2.jpg">
+                        </p>
+                        <p>Remember to use "export" instead of "set" if you're not on Microsoft Windows, and that it's okay if you don't get an 
+                            email after running the application again and triggering the error. 
+                        </p>
+                        
+                    <h3><u>Logging To A File</u></h3>
+                    <p>Receiving errors via email is okay, but having a file to store errors via logging is even better. There's some 
+                        failure conditions that don't end in a Python exception and aren't a major problem, per say, but may still be 
+                        useful to save for debugging purposes. For this reason, we're also going to maintain a log file for the application. 
+                    </p>
+                    <p>To enable a file based log, another handler, called "RotatingFileHandler", needs to be attached to the 
+                        application logger, in a similar way to the email handler(SMTPHandler). This'll be done in the "__init__.py" file. 
+                        <br><br><img src="./img/adding logger to init.jpg">
+                    </p>
+                    <p>We're going to be writing this into a file. Which, first means we have to create it. We've done this by simply 
+                    using the "os" library in python(which deals with operating system things, like making directories and such) to make 
+                    a new log file with the name "microblog.log" in the "logs" directory. 
+                    </p>
+                    <p>The "RotatingFileHandler" actually helps us deal with memory usage in this file. Seeing as it ensures that 
+                        the log files don't grow too large when the application runs for a long time. In this case, we're limiting 
+                        the size of the log file to 10KB, and we're keeping the last 10 log files as backup. 
+                    </p>
+                    <p>The "logging.Formatter" class provides custom formatting for the log messages. Since, these messages are going to 
+                        a file, I want them to have as much information as possible. So, I'm using a format that includes:
+                        <ul>
+                            <li>The timestamp</li>
+                            <li>The logging level</li>
+                            <li>The message</li>
+                            <li>The source file</li>
+                            <li>The line number from where the log entry originated</li> 
+                        </ul>
+                    </p>
+                    <p>To make the logging more useful, and not just displaying the very blatant errors in our program, we're lowered the 
+                        logging level to the "INFO" category, both in the application logger and the file logger handler. In case you're 
+                        unaware with the logging categories, here they are in order from least to most severe:
+                        <ol>
+                            <li>DEBUG</li>
+                            <li>INFO</li>
+                            <li>WARNING</li>
+                            <li>ERROR</li>
+                            <li>CRITICAL</li>
+                        </ol>
+                    </p>
+                    <p>When this application runs on a production server, there'll be log entries from the server indicating each 
+                        time it starts in a line in the log file. These will tell you when the server was restarted. 
+                    </p>
+
+                    <h3><u>Fixing The Original Bug</u></h3>
+                    <p>Now, that we have our error handling system all figured out for the future, let's focus on fixing the error at hand. 
+                    </p>
+                    <p>Here in the "EditProfileForm" class inside of the "forms.py" file, we have to implement a username validation. This'll 
+                        be much like the one in the "RegistrationForm", except that if the user leaves the original username untouched, 
+                        then the validation should allow it, since that username is already assigned to that user form being logged in. 
+                        <br><br><img src="./img/implementing the username validation into edit profile form.jpg">
+                    </p>
+                    <p>In the "validate_username" method, it takes the original usernamem as an argument, which was defined in the __init__ method 
+                        above. This prevents from checking the database for duplicates if the username entered in the form is the same 
+                        as the original username. 
+                    </p>
+                    <p>Now, we simply have to add the original username argument in the view function, where the "EditProfileForm" object 
+                        is created. 
+                        <br><br><img src="./img/adding current user username argument to view function in routes python.jpg">
+                    </p>
+
+                </section>
+                    
+                    
+                    
+                <section id="chapter8">
+
+                    <br><br><br><h2><a name="chapter8">Chapter 8: Followers</a></h2>
+        
+                    <h3><u>More Database Relationships</u></h3>
+                    <p>This chapter is going to really complicate what you learned in <a href="#chapter4">Chapter 4</a> about database relationships. 
+                    </p>
+                    <p>
+                        
 
             </div>
         </section>
