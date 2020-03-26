@@ -1289,7 +1289,53 @@
                     </p>
                     <p>Here's a diagram of the self-referential "many-to-many" relationship that keeps track of followers:
                         <br><br><img src="./img/followers table users.jpg">
-                        
+                    </p>
+                    <p>In this case the "followers" table is the association table of the relationship. The foreign keys in this table 
+                        are both pointing at entries in the user table, since it's linking users to users. Each record in this table 
+                        represents one line between a follower user and a followed user. Like the students and teachers example, a setup 
+                        like this one allows the database to answer all queries about followed and follower users that we'll need. 
+                    </p>
+
+                    <h3><u>Adding Followers Table</u></h3>
+                    <p>Now, we need to add the "followers" association table to the database in the "models.py" file. 
+                        <br><br><img src="./img/adding followers association table to models python.jpg">
+                    </p>
+                    <p>This is just translating the followers association table diagram into code. 
+                    </p>
+                    <p>Note that we're not declaring this table as a model, like we did for the users and posts tables. Since, this is an 
+                        auxiliary table that has no data other than the foreign keys, we created it without an associated model class.
+                    </p>
+                    <p>Now, we can declare the "many-to-many" relationship in the users table in the "models.py" file.
+                        <br><br><img src="./img/adding followed relationship to the User model.jpg">
+                    </p>
+                    <p>Here, we're just using the "db.relationship()" function to define the relationship in the "User" model class, just 
+                        like we did for the posts "one-to-many" relationship. This relationship links "User" instances to other "User" 
+                        instances. Let's just say that for a pair of users linked by this relationship, the left side user is following 
+                        the right side user. We're defining this relationship as seen from the left side user with the name "followed", 
+                        because when we query this relationship from the left side we'll get the list of followed users(those on the right 
+                        side).
+                    </p>
+                    <p>Let's just go over all arguments to the "db.relationship()" call one at a time:
+                        <ul>
+                            <li>"User" is the right side entity of the relationship(the left side entity is the parent class). Since this is a 
+                                self-referential relationship, we have to use the same class on both sides.</li>
+                            <li>"secondary" configures the association table that's used for this relationship, which we defined right above this class.</li>
+                            <li>"primaryjoin" indicates the condition that links the left side entity(the follower user) with the association 
+                                table. The join condition for the left side of the relationship is the user ID matching the "follower_id" field of the 
+                                association table. The "followers.c.follower_id" expression references the "follower_id" column of the association table.</li>
+                            <li>"secondaryjoin" indicates the condition that links the right side entity(the followed user) with the association table. 
+                                This condition is similar to the one for "primaryjoin", with the only difference being that we're now using "followed_id", which 
+                                is the other foreign key in the association table.</li>
+                            <li>"backref" defines how this relationship will be accessed from the right side entity. From the left side, the 
+                                relationship is named "followed", so from the right side we're going to use the name "followers" to represent all 
+                                the left side users that are linked to the target user in the right side. The additional "lazy" argument indicates the 
+                                execution mode for this query. A mode of "dynamic" sets up the query to not run until specifically requested, which 
+                                is also how we set up the posts one-to-many relationship.</li>
+                            <li>"lazy" is similar to the paramter of the same name in the "backref", but this one applies to the left side query 
+                                instead of the right side.</li>
+                        </ul>
+                    </p>
+                    <p>
 
             </div>
         </section>
