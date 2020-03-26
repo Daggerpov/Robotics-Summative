@@ -1593,7 +1593,38 @@
                     <p>We're also going to add a link to this new page in the navigation bar in the "base.html" file. 
                         <br><br><img src="./img/adding link to explore in base.jpg">
                     </p>
-                    <p>
+                    <p>We're going to go back to the "post.html" sub-template from earlier. This was a small template that was included form the 
+                        user profile page template, and was separate so that it can also be used from other templates. We're now going to make a 
+                        small improvement to it, which is to show the username of the blog post author as a link. 
+                        <br><br><img src="./img/adding link to author in _post.jpg">
+                    </p>
+                    <p>We can now use this sub-template to render blog posts in the home and explore pages. 
+                        <br><br><img src="./img/including post index ting.jpg">
+                    </p>
+                    <p>This is now what the explore page is looking like after adding a few posts from different registered users:
+                        <br><br><img src="./img/explore page.jpg">
+                    </p>
+                    
+                    <h3><u>Blog Post Pagination</u></h3>
+                    <p>Now, it's time to implement pagination, which will limit the amount of posts per page at one time, to avoid clutter, 
+                        run time being too long, and other issues that could arise with having all of them displayed at once. 
+                    </p>
+                    <p>In paginating the post list, we're going to show just a limited number of posts at a time, and include links to 
+                        navigate through the entire list of posts. Flask-SQLAlchemy supports pagination natively with the "paginate()" query method. 
+                    </p>
+                    <p>The "paginate()" method can be called on any query object form Flask-SQLAlchemy. It takes these three arguments: 
+                        <ol>
+                            <li>The page number, starting from 1.</li>
+                            <li>The number of items per page.</li>
+                            <li>An error flag. If True, when an out of range page is requested a 404 error will be automatically returned to the 
+                                client. If False, an empty list will be returned for out of range pages.</li>
+                        </ol>
+                    </p>
+                    <p>The return value from "paginate()" is a Pagination object. The "items" attribute of this object contains 
+                        the list of items in the requested page.
+                    </p>
+                    <p>Now, let's start by adding a configuration item to the application that determines how many items will be displayed per page. 
+                        <br><br><img src="./img/"
 
             </div>
         </section>
