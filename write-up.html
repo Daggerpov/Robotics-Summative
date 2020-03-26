@@ -1215,6 +1215,57 @@
                     <h3><u>More Database Relationships</u></h3>
                     <p>This chapter is going to really complicate what you learned in <a href="#chapter4">Chapter 4</a> about database relationships. 
                     </p>
+                    <p>For every user, we want to maintain a list of "followed" and "follower" users for each user. Unfortunatley, a 
+                        relational database doesn't have a list type that we can use for these lists, all there is are tables with 
+                        records and relationships between said records. 
+                    </p>
+                    <p>The database we've implemented already has a table that represents users, so what's left is to come up with the 
+                        proper relationship type that can model the follower/followed link. 
+                    </p>
+                    <p>Alright, before going into what's next for the database, I'm just going to go over every basic database relationship 
+                        type to stay organized. 
+                    </p>
+
+                    <h3><u>One-To-Many</u></h3>
+                    <p>Well, we've already covered this one in Chapter 4, right <a href="#chapter4">here</a>
+                    </p>
+                    
+                    <h3><u>Many-To-Many</u></h3>
+                    <p>This relationship is a bit more complex. For example, let's consider a database that has "students" and "teachers". 
+                        We can say that a student has 'many' teachers, and a teacher has 'many' students. As Miguel Grinberg describes it, 
+                        it's like two overlapped one-to-many relationships from both ends. 
+                    </p>
+                    <p>For this kind of relationship, we should be able to query the database and obtain the list of teachers that teach a 
+                        given student, and the list of students in a teacher's class. This is actually difficult to represent in a relational database, 
+                        as it can't be done by adding foreign keys to the existing tables. 
+                    </p>
+                    <p>A reason why a many-to-many relationship can't be defined using two tables alone is because we can't have more 
+                        than one teacher_id column for the student's multiple teachers.
+                    </p>
+                    <p>It's just not the way databases work, and I'll show you why. 
+                        <br><br><img src="./img/many-to-many relationship 2 tables(doesn't work) (2).jpg">
+                    </p>
+                    <p>This kind of relationship doesn't work in this manner, since we can't have multiple columns for the "teacher_id"s. 
+                        The teacher_id column can only hold one value, so separating with commas like I did in that diagram also doesn't work.
+                        Finally, we can't add another row, since it would be duplication of the students.
+                    </p>
+                    <p>All of these things would break the rules of normalization. It's for all these reasons that we have a joining/association/junction/bridging table. 
+                    </p>
+                    <p>Here is how the database would look for the students and teachers example with an auxiliary association table:
+                        <br><br><img src="./img/association table with students and teachers.jpg">
+                    </p>
+                    <p>Instead of going straight into the teachers table, there's a foreign key with the teacher's id established 
+                        inside of the association table, that's then used to connect with the students table. This is how it becomes similar 
+                        to a one-to-many relationship. Now, the association table with its two foreign keys is able to efficiently answer 
+                        all the queries about the relationship. 
+                    </p>
+                    <p>Here's a full example of what this association table diagram would look like with the same instances from before:
+                        <br><br><img src="./img/"
+                    
+                    <h3><u>Many-To-One</u></h3>
+                    <p>This is essentially the same thing as a one-to-many relationship, only that you're looking at this relationship from the 
+                        'many' side. In other words, the local table is the one with 'many' now, and the foreign table has 'one'. 
+                    </p>
                     <p>
                         
 
