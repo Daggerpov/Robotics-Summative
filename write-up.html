@@ -1447,7 +1447,25 @@
                         currently logged in. The "filter()" call selects the items in the joined table that have the "follower_id" column set to 
                         this user, which in other words means that we're keeping only the entries that have this user as a follower(or, are followed by this user).
                     </p>
-                    <p>Let's say the user that's logged in is "bogar". 
+                    <p>Let's say the user that's logged in is "bogar", who's "user_id" field is set to 1. Here,s how the joined table would look 
+                        after applying the filtering method: 
+                        <br><br><img src="./img/filtered posts table with followers table.jpg">
+                    </p>
+                    <p>Remember that the query was issued on the "Post" class, so even though we ended up with a temporary table that was 
+                        created by the database as part of this query, the result will be the posts that are included in this temporary table, 
+                        without the extra 'followers' columns added by the join operation. 
+                    </p>
+                    
+                    <h3><u>Order_by()</u><h3>
+                    <p>The last step of this giant query is to sort the results of it. Once again, here's the order_by() call that was defined for this query: 
+                        <br><br><img src="./img/order_by method isolated.jpg">
+                    </p>
+                    <p>Here, we're just saying that we want the results sorted by the timestamp field of the post in descending order. With this order, 
+                        the first result will be the most recent blog post. 
+                    </p>
+                    
+                    <h3><u>Combining Own & Followed Posts</u></h3>
+                    <p>
 
             </div>
         </section>
