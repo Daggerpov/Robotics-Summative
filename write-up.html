@@ -1137,7 +1137,6 @@
                             I tried setting this up in my gmail account, and found out that Google now only lets G-Suite accounts access 
                             these settings.
                         </p>
-                        
                         <li>Second approach</li>
                         <p>This second approach is a little bit harder, since you're configuring a real email server. Below is the configuration 
                             to use your Gmail account's email server. 
@@ -1717,6 +1716,21 @@
                     <p>Like the other Flask extensions we've installed, we need to create an instance right after the Flask application is created 
                         in the "__init__.py" file. In this case this it's an object of class "Mail". 
                         <br><br><img src="./img/adding mail object.jpg">
+                    </p>
+                    <p>Since we're planning to test sending of emails we have the same two options mentioned in <a href="#chapter7">Chapter 7</a>. 
+                        We're going to go with the second one, which means actually sending an email to ourselves. This requires setting these environment 
+                        variables like so(use "export" instead of "set" if you're not on Microsoft Windows):
+                        <br><br><img src="./img/setting environment variables for testing mail.jpg">
+                    </p>
+                    <p>Once again, don't worry if you don't get an email, though. Since, your Gmail account may prevent the application from 
+                        sending emails through it unless you explicitly allow "less secure apps" access to your Gmail account. However, 
+                        I tried setting this up in my gmail account, and found out that Google now only lets G-Suite accounts access 
+                        these settings. 
+                    </p> 
+                    
+                    <h3><u>Simple Email Framework</u></h3>
+                    <p>We'll begin by writing a helper function that sends an emaail in a new file/module called "email.py" inside of the "app" folder. 
+                        <br><br><img src="./img/email py creation.jpg">
                     </p>
                     <p>
 
