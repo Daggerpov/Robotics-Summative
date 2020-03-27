@@ -1973,7 +1973,40 @@
                         So, to remove this from your operation, simply right click on it and click "dismiss". 
                         <br><br><img src="./img/dismissing metadata.jpg">
                     </p>
-                    <p>
+                    <p>Now, just click on the "replace all" button found here: 
+                        <br><br><img src="./img/clicking replace all button vsc.jpg">
+                    </p>
+                     
+                    <h3><u>Rendering Bootstrap Forms</u></h3>
+                    <p>Instead of having to style the form fields one by one, Flask-Bootstrap comes with a macro that accepts a Flask-WTF form object 
+                        as an argument and renders the complete form using Bootstrap styles. Now, to implement this feature form Flask-Bootstrap, we need to 
+                        change up the register.html template:
+                        <br><br><img src="./img/new bootstrapped register html.jpg">
+                    </p>
+                    <p>The "import" statement near the top works similarly to a Python import. That adds a "wtf.quick_form()" macro that, in a single line of 
+                        code, renders the complete form, including support for display validation errors. 
+                    </p>
+                    
+                    <h3><u>Blog Post Rendering</u></h3>
+                    <p>The presentation logic that renders a single blog post was abstracted into a sub-template file called "_post.html". All we need to do 
+                        with this template is make some minor adjustments so that it looks good under Bootstrap. 
+                        <br><br><img src="./img/new _post html bootstrapped.jpg">
+                    </p>
+                    
+                    <h3><u>Rendering Pagination Links</u></h3>
+                    <p>For pagination links, we're just going to adapt one of the examples in the Bootstrap documentation. Here's what they look like in the "index.html" page:
+                        <br><br><img src="./img/new index bootstrapped.jpg">
+                    </p>
+                    <p>Note that in this implementation, instead of hiding the next or previous link when that direction doesn't have any more content, 
+                        we're applying a disabled state, which will make the link appear grayed out. 
+                    </p>
+                    <p>We also need to implement a similar change in the some other files. 
+                        <br><br><img src="./img/new user bootstrapped.jpg">
+                        <br><br><img src="./img/new edit_profile bootstrapped.jpg">
+                        <br><br><img src="./img/new login bootstrapped.jpg">
+                        <br><br><img src="./img/new reset_password_request bootstrapped.jpg">
+                        <br><br><img src="./img/new reset_password bootstrapped.jpg">
+                    </p>
 
 
 
