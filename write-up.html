@@ -1889,6 +1889,92 @@
                         variable values for the email server. 
                     </p>
 
+                </section>
+                    
+                    
+                    
+                <section id="chapter11">
+
+                    <br><br><br><h2><a name="chapter11">Chapter 11: Styling</a></h2>
+        
+                    <h3><u>CSS Frameworks</u></h3>
+                    <p>If you just want to create decent looking web pages, but don't want to do it by yourself by writing raw HTML and CSS code, then 
+                        the only practical solution is to use a CSS framework to simplify the task. You'll lose some of your creative freedom by going 
+                        down this path, but your web pages will look good in all browsers without a lot of effort. A CSS framework provides a collection 
+                        of high-level CSS classes with pre-made styles for common types of user interface elements. 
+                    </p>
+                    
+                    <h3><u>Introducing Bootstrap</u></h3>
+                    <p>This is actually the CSS framework I personally used to help me design the website you're reading this off of right now. Although, I did add an 
+                        extra ~100 lines of code in two CSS files I made. 
+                    </p>
+                    <p>Here are some of the benefits of using Bootstrap to style your web pages: 
+                        <ul>
+                            <li>There'll be a similar look in all major web browsers.</li>
+                            <li>It can handle desktop, tablet, and phone screen sizes(which is what makes this website mostly cross-platform, aside from pictures).</li>
+                            <li>There are customizable layouts</li>
+                            <li>It has nicely styled navigation bars, forms, buttons, alerts, popups, etc.</li>
+                        </ul>
+                    </p>
+                    <p>The most direct way to use Bootstrap is to simply import the "bootstrap.min.css" file in your base template. You can either download a copy of this file 
+                        and add it to your project, or import it directly from a CDN(Content Delivery Network). Then, you can start using the general 
+                        purpose CSS classes it provides. 
+                    </p>
+                    <p>fortunately for us, there's a Flask extension called "Flask-Bootstrap" that provides a ready to use base template that has the Bootstrap 
+                        framework already installed on it. To install it, type this command into your terminal window: 
+                        <br><br><img src="./img/pip install flask-bootstrap.jpg">
+                    </p>
+                    
+                    <h3><u>Using Flask-Bootstrap</u></h3>
+                    <p>Let's go ahead and initialize this extension in the "__init__.py" file. 
+                        <br><br><img src="./img/initializing bootstrap.jpg">
+                    </p>
+                    <p>With the exntension initialized, a "base.html" templte becomes available in the "bootstrap" folder, and can be referenced from 
+                        application templates with the "extends" clause. 
+                    </p>
+                    <p>However, we're already using the "extends" clause with our own "base.html" template. Our template also deifned the navigation bar, 
+                        which included a few links, ans also exported a "content" block. All other templates in our application inherit from the "base.html" 
+                        template and provide the "content" block with the main content of the page. 
+                    </p>
+                    <p>So, the idea of how we're going to fit the Bootstrap base template is to use a three-lvel hierarchy instead of just two(being the base template 
+                        and the templates that inherit from it). The "base.html" template in the "bootstrap" folder provides the basic structure of the page, 
+                        which includes the Bootstrap framework files. This template exports a few blocks for derived templates such as "title", "navbar", and "content" blocks. 
+                        In turn, the bootstrap base template will export its own "app_content" block for its derived templates to define the page content. 
+                    </p>
+                    <p>Now, we need to make our "base.html" file in the "templates" folder inherit from the Bootstrap base template. 
+                        <br><br><img src="./img/new nav bar.jpg">
+                    </p>
+                    <p>Here you can see how we made this template derive form "base.html" file in the "bootstrap" folder, followed by the three blocks 
+                        that implement the: page title, navigation bar and page content. 
+                    </p>
+                    <p>The "title" block needs to define the text that'll be used for the page title, with the "title" tags. For this block, we simply moved 
+                        the logic that was inside the "title" tag in the original base template. 
+                    </p>
+                    <p>The "navbar" block is an optional block that can be used to define a navigation bar. For this block, we included a site branding on the left end, 
+                        followed by the "Home" and "Explore" links. We then added the "Profile" and "Login"/"Logout" links aligned with the right border of the 
+                        page. 
+                    </p>
+                    <p>Finally, in the "content" block we're defining a "top-level" container, and inside it we have the logic that renders flashed messages, which 
+                        are now going to appear styled as Bootstrap alerts automatically. That's followed with a new "app_content" block that's defined just so 
+                        that derived templates can define their proper content. 
+                    </p>
+                    <p>The original version of all the page templates defined their content in a block named "content". Since, the block named "content" is now 
+                        used by Flask-Bootstrap, we renamed our content block as "app_content". So, all our templates have to be renamed to use "app_content" as their content block. 
+                    </p>
+                    <p>To do this, we can just do a search from all our files and replace "{% block content %}" with "{% block app_content %}". This can be 
+                        done in Visual Studio Code, by first clicking on the 'Search' button: 
+                        <br><br><img src="./img/clicking search button.jpg">
+                    </p>
+                    <p>Then, we need to indicate what we want to find, and what we want to replace it with in each of our files. To do this, type this into 
+                        each of the boxes: 
+                        <br><br><img src="./img/searching and replacing in vsc.jpg">
+                    </p>
+                    <p>Now, we've found all files including the text we searched for, but we actually found a file called "METADATA", which we don't want to touch. 
+                        So, to remove this from your operation, simply right click on it and click "dismiss". 
+                        <br><br><img src="./img/dismissing metadata.jpg">
+                    </p>
+                    <p>
+
 
 
             </div>
