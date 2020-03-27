@@ -1749,7 +1749,146 @@
                     </p>
                     
                     <h3><u>Requesting a Password Reset</u><h3>
+                    <p>For the purpose of allowing users to have the option to request their password to be reset, we're going to add a link in the login page. 
+                        <br><br><img src="./img/adding forgot your password link to login.jpg">
+                    </p>
+                    <p>When the user clicks the link, a new web form will appear that requests the user's email address as a way to initiate the password 
+                        reset process. This will be created in the "forms.py" file as a new form class. 
+                        <br><br><img src="./img/new form class for resetting password.jpg">
+                    </p>
+                    <p>Now, we need to also create a new corresponding HTML template called "reset_password_request.html". 
+                        <br><br><img src="./img/new template for resetting password request.jpg">
+                    </p>
+                    <p>We also need a view function to handle this form in the "routes.py" file. 
+                        <br><br><img src="./img/new view function for resetting password.jpg">
+                    </p>
+                    <p>This view function is fairly similar to others that process a form. We start it off by making sure the user isn't logged in. If they 
+                        are, then there's no point in using the password reset functionality, so we simply redirect them to the "index" page. 
+                    </p>
+                    <p>When the form is submitted and valid, we look up the user by the email provided by the user in the form. If we find the user, 
+                        we send a password reset email, which'll be done using a "send_password_reset_email" function that we'll make later. 
+                    </p>
+                    <p>After the email's sent, we flash a message directing the user to look for the email for further instructions, and then redirect them 
+                        back to the login page. We are actually displaying the flashed message even if the email provided by the user is unknown. This is so 
+                        that clients can't use this form to figure out if a given user is a member or not. 
+                    </p>
                     
+                    <h3><u>Password Reset Tokens</u></h3>
+                    <p>Before we implement the "send_password_reset_email" function, we need to have a way to generate a password request link. This is going 
+                        to be the link that's sent to the user via email. When the link's clicked, a page where a new password can be set is presented to the 
+                        user. 
+                    </p>
+                    <p>The links are going to be supplied with a token, and this token will be validated before allowing the password change, as proof that 
+                        the user that requested the email has access to the email address on the account. A very popular token standard for this type of 
+                        process if the JSON Web Token, or JWT. These tokens are self contained, which means you can send a token to a user in an email, and 
+                        when the user clicks the link that feeds the token back into the application, it can be verified on its own. 
+                    </p>
+                    <p>We're going to launch a Python shell session to understand them by just typing in  "python" or "python3" into the terminal. 
+                        <br><br><img src="./img/jwt encoding and decoding in terminal.jpg">
+                    </p>
+                    <p>The {'a': 'b'} dictionary is an example payload that's going to be written into the token. To make the token more secure, a secret 
+                        key needs to be provided to be used in creating a cryptographic signature. For this example, we've used the string 'my-secret', but 
+                        with the appliation we're going to use the "SECRET_KEY" from the "config.py" file. The "algorithm" argument specifies how the 
+                        token is to be generated, HS256 being the most widely used one. 
+                    </p>
+                    <p>The resulting token is a long sequence of characters. However, it's not an encrypted token. The contents of the token, including the paylod, 
+                        can be decoded easily by anyone. What makes the token secure is that the payload is signed. If somebody tried to forge or tamper with the 
+                        payload in a token, then the signature would be validated, and to generate a new signature the secret key is needed. When a token is 
+                        verified, the contents of the payload are decoded and returned back to the caller. If the token's signature was validated, then the payload 
+                        can be trusted as authentic. 
+                    </p>
+                    <p>The payload that we're going to use for the password reset tokens is going to have the format {'reset_password': user_id, 'exp': token_expiration}. 
+                        the "exp" field is standard for JWTs, and if present, it indicates an expiration time for the token. If a token has a valid signatiure, 
+                        but it's past its expiration timestamp, then it'll also be considered invalid. For the password reset feature, we'll give these tokens 10 minutes till their expiration. 
+                    </p>
+                    <p>When the user clicks on the emailed link, the token's going to be sent back to the application as part of the URL, and the first 
+                        thing the view function that handles this URL will do is verify it. If the signature is valid, then the user can be identified by the ID 
+                        stored in the payload. Once the user's identity is known, the application can ask for a new password and set it on the user's account. 
+                    </p>
+                    <p>Since, these tokens belong to users, we're going to write the token generation and verification functions as methods in the "User" model in the "models.py" file. 
+                        <br><br><img src="./img/adding two methods to user for resetting password.jpg">
+                    </p>
+                    <p>The "get_reset_password_token()" function generates a JWT token as a string. Note that the "decode('utf-8')" is necessary becuase the 
+                        "jwt.encode()" function returns the token as a byte sequence, but in the application it's more convenient to have the token as a string. 
+                    </p>
+                    <p>The "verify_reset_password_token()" is a static method, which means that it can be invoked directly from the class. A static method is 
+                        similar to a class method, with the only difference being that static methods don't receive the class as a first argument. This method takes 
+                        a token and attempts to decode it by invoking PyJWT's "jwt.decode()" function. If the token can't be validated or is expired, an 
+                        exception will be raised, and in that case we'll catch it to prevent the error, and then return None to the caller of the function. If the 
+                        token is valid, then the value of the "reset_password" key from the token's payload is the ID of the user, so we can load the user and return it. 
+                    </p>
+
+                    <h3><u>Password Reset Email</u></h3>
+                    <p>Now, that we have the tokens, we can generate the password reset emails. The "send_password_reset_email()" function relies on the "send_email()" 
+                        function written earlier. Here's the new function in the "email.py" file:
+                        <br><br><img src="./img/send password reset email function in email python.jpg">
+                    </p>
+                    <p>Now, we just have to make the two files that the render_template() function renders from. One for .txt format and one in .html format. 
+                        Since, we take the user and token as arguments, there can be a personalized email message generated by these files. These two 
+                        files are going to be made inside the "email" folder inside the "templates" folder and are both going to be called "reset_password", just 
+                        with two different file extensions: .txt and .html. 
+                        <br><br><img src="./img/reset password txt.jpg">
+                        <br><br><img src="./img/reset password html.jpg">
+                    </p>
+                    <p>The "reset_password" route that's referenced in the "url_for()" call in these two email templates doesn't exist yet, but will be added later. 
+                        The "_external=True" argument that's included in the "url_for()" calls in both templates is also new. The URLs that are generated by 
+                        "url_for" by default are relative URLs, which have been explained in <a href="#chapter5">Chapter 5</a>. When "_external=True" is passed 
+                        as an argument, complete URLs are generated. 
+                    </p>
+                    
+                    <h3><u>User Password Resetting</u></h3>
+                    <p>When the user clicks on the email link, we want for there to be a second route associated with this feature. We're going to make the 
+                        password request view function in the "routes.py" file. 
+                        <br><br><img src="./img/adding route for resetting password.jpg">
+                    </p>
+                    <p>In this view function, we first make sure the user isn't logged in, and then we determine who the user is by invoking the token verification 
+                        method in the "User" class. This method returns the user if the token is valid, or None if not. If the token is invalid we redirect them to the home page. 
+                    </p>
+                    <p>If the token is valid, then we present the user with a second form, in which the new password is requested. This form is processed in a way 
+                        similar to previous forms, and as a refult of a valid form submission, we invoke the "set_password" method of "User" to change the password, 
+                        and then redirect them to the login page, where the user can now login. 
+                    </p>
+                    <p>Here's the new ResetPasswordForm class in the "forms.py" file:
+                        <br><br><img src="./img/resetpasswordform.jpg">
+                    </p>
+                    <p>Here's the corresopnding HTML template file named "rest_password" in the "templates" folder:
+                        <br><br><img src="./img/reset password template.jpg">
+                    </p>
+                    <p>You can now go ahead and try out the new password reset feature if you'd like 
+                    </p>
+                    
+                    <h3><u>Asynchronous Emails</u></h3>
+                    <p>Sending an email slows the application down considerably. All the interactions that need to happen when sending an email make the 
+                        task slow, since all these things can take some time: 
+                        <ul>
+                            <li>Getting the email out.</li>
+                            <li>Waiting for the possibly slow email server of the recipient.</li>
+                            <li>Sending the email to multiple addresses.</li>
+                        </ul>
+                    </p>
+                    <p>What we really want here is for the "send_email()" function to be asynchronous. This means that when this function is called, 
+                        the task of sending the email is schedule to happen in the background, freeing the "send_email()" to return immediately so that the 
+                        application can continue running concurrently with the email being sent. Basically, the application's code still keeps running while the 
+                        email gets sent. 
+                    </p>
+                    <p>Python has support for running asynchronous tasks, in multiple ways. The "threading" and "multiprocessing" modules can both do this. Starting 
+                        a background thread for email being sent is much less resource intensive than starting a brand new process, so that's the approach we're going with. 
+                        <br><br><img src="./img/adding asynchronous email sending to email python.jpg">
+                    </p>
+                    <p>The "send_async_email" function now runs in a background thread, invoked via the "Thread()" class in the last line of "send_mail()". 
+                        With this change, the sending of the email will run in the thread, and when the process completes, the thread will end and clean itself up. 
+                    </p>
+                    <p>Along with the "msg" argument being sent to the thread, there's also the application instance. When working with threads, Flask uses 
+                        contexts to avoid having to pass arguments across functions. There are two tpyes of contexts, the application context and the request context. 
+                        In most cases, these contexts are automatically managed by the framework, but when the application starts custom threads, contexts for 
+                        those threads may need to be manually created. 
+                    </p>
+                    <p>Many extensions require an application context to be in place to work, becuase that allows them to find the Flask application instance 
+                        without itbeing passed as an argument. The reason many extensions need to know the application instance is becuase they have their 
+                        configuration sotred in the "app.config" object, like what's the case with Flask-Mail. The "mail_send()" method needs to access the configuration 
+                        variable values for the email server. 
+                    </p>
+
 
 
             </div>
