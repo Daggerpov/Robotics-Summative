@@ -1133,9 +1133,9 @@
                         <p>Now, it's time to run the application and trigger the error once again, and see what arrives in your email inbox. 
                         </p>
                         <p>Don't worry if you didn't get an email, though. Since, your Gmail account may prevent the application from 
-                            sending emails through it unless you explicitly allow "less secure apps" access to your Gmail account. However, 
-                            I tried setting this up in my gmail account, and found out that Google now only lets G-Suite accounts access 
-                            these settings.
+                            sending emails through it unless you explicitly allow "less secure apps" access to your Gmail account. You should 
+                            get an email saying that there's a "Google Security Alert", which leads you to information on how to allow this option. 
+                            <br><br><img src="./img/less secure app access.jpg">
                         </p>
                         <li>Second approach</li>
                         <p>This second approach is a little bit harder, since you're configuring a real email server. Below is the configuration 
@@ -1723,16 +1723,33 @@
                         <br><br><img src="./img/setting environment variables for testing mail.jpg">
                     </p>
                     <p>Once again, don't worry if you don't get an email, though. Since, your Gmail account may prevent the application from 
-                        sending emails through it unless you explicitly allow "less secure apps" access to your Gmail account. However, 
-                        I tried setting this up in my gmail account, and found out that Google now only lets G-Suite accounts access 
-                        these settings. 
+                        sending emails through it unless you explicitly allow "less secure apps" access to your Gmail account. You should 
+                        get an email saying that there's a "Google Security Alert", which leads you to information on how to allow this option. 
+                        <br><br><img src="./img/less secure app access.jpg"> 
                     </p> 
                     
+                    <h3><u>Flask-Mail Usage</u></h3>
+                    <p>To learn how Flask-Mail works, you'll see how to send an email from a Python shell. After typing in the "flask shell" command 
+                        into your terminal, run the following commands: 
+                        <br><br><img src="./img/running commands to test python email ting.jpg">
+                    </p>
+                    <p>Now, just check your inbox and you'll have the email sent to you and any other email addresses you included in the "recipients" argument. 
+                    </p>
+                    <p>We put the sender as the first configured admin. The email will have plain text and HTML versions, so depending on how your email client 
+                        is configured you may see one or the other. For Gmail, I believe it's the HTML version. 
+                        <br><br><img src="./img/html body email to gmail.jpg">
+                    </p>
+
                     <h3><u>Simple Email Framework</u></h3>
+                    <p>Now, let's integrate emails directly into our application. 
+                    </p>
                     <p>We'll begin by writing a helper function that sends an emaail in a new file/module called "email.py" inside of the "app" folder. 
+                        This is the same thing as what we saw in the previous section in the python shell. 
                         <br><br><img src="./img/email py creation.jpg">
                     </p>
-                    <p>
+                    
+                    <h3><u>Requesting a Password Reset</u><h3>
+                    
 
 
             </div>
