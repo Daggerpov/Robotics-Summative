@@ -2029,8 +2029,81 @@
 
                     <br><br><br><h2><a name="chapter12">Chapter 12: Dates and Times</a></h2>
         
-                    <h3><u>Timezones</u></h3>
-                    <p>
+                    <h3><u>Timezone Conversions</u></h3>
+                    <p>Using Python on the server to render dates and times that are presented to users on their web browsers isn't 
+                        great. Since, it either displays the current time appropriate to your current timezone with the "datetime.now()" function, 
+                        or displays the current time regardless of location with the "datetime.utcnow()" function. 
+                    </p>
+                    <p>It's evident then, that the server must manage times that are consistent and independent of location. So, we're 
+                        obviously going to be using the utc(universal time coordinated) standard method of displaying current date and time. 
+                    </p>
+                    <p>However, there is one problem with this approach. For users in different timezones, it'll be awfully difficult to 
+                        figure out when a post was made if they see times in the UTC timezone. To resolve this issue, we're going to 
+                        address this problem while keeping all the timestamps managed in the server in UTC.
+                    </p>
+                    <p>What's really tough about converting UTC times to localized ones for each user's location, is knowing the location of 
+                        the user. Many webistes simply have a configuration page where users can specify their timezone. This would require us 
+                        to add a new page with a new form to be presented to users, as well as, the inconvenience for users to require them 
+                        to set this up when they register their accounts. 
+                    </p>
+                    <p>As it turns out, though, the web browser knows the user's timezone, and exposes it through the standard data dn time 
+                        JavaScript API(Application Programming Interface)s.  So, using JavaScript, we're simply not going to change a thing in the 
+                        server, and let the conversion from UTC to local time happen in the client. In addition to just the date and time of the user, 
+                        the browser also has access to the system locale configuration, which specifies things like AM/PM vs 24 hour clock, 
+                        DD/MM/YYYY vs. MM/DD/YYYY and many other cultural or regional styles to formatting the data and time. 
+                    </p>
+                    
+                    <h3><u>Introducing Moment.js and Flask-Moment</u></h3>
+                    <p>Moment.js is a small open-source JavaScript library that provides every imaginable formatting option. Flask-Moment 
+                        is a small Flask extension that makes it very easy to incorporate moment.js into our application. Let's start by installing it. 
+                        <br><br><img src="./img/pip install flask-moment.jpg">
+                    </p>
+                    <p>Now, as usual, just add an instance of this class to the "__init__.py" file. 
+                        <br><br><img src="./img/adding flask-moment instance to init.jpg">
+                    </p>
+                    <p>To ensure that this library is always available in all pages, we'll add it in the base template. 
+                        Normally, to add JavaScript to an HTML file, you'd have to incorporate a "script" tag and then enter your code inside, 
+                        but Flask-Moment makes it easier, by exposing a "moment.include_moment()" function that generates the "script" tag for you. 
+                        <br><br><img src="./img/adding scripts to base html.jpg">
+                    </p>
+                    <p>The "scripts" block that we've added here is another block supported by Flask-Bootstrap's base template. This is where 
+                        JavaScript imports are to be included. This block is different from previous ones in that it already comes with some 
+                        content defined in the base template. All we want to do here is add the moment.js library, without losing the base contents. 
+                        This is done with the "super()" statement. If we were to have defined a block in our template without using "super()", 
+                        then any content defined for this block in the base template would've been lost. 
+                    </p>
+                    
+                    <h3><u>Using Moment.js</u></h3>
+                    <p>Moment.js makes a "moment" class available to the browser. The first step to rendering a timestamp is to create an
+                        object of this class, passing the desired timestamp in <a href="https://en.wikipedia.org/wiki/ISO_8601">this</a> format. 
+                        The format is as follows: (year)-(month)-(day)T(hour):(minute):(second)(timezone). An example is as follows: 
+                        <br><br><img src="./img/ISO format example.jpg">
+                    </p>
+                    <p>The last part is "Z", which represents the UTC in the ISO 8601 standard format. 
+                    </p>
+                    <p>The "moment" object provides several methods for different rendering options. Below are some of the most common options: 
+                        <br><br><img src="./img/example of time things document google.jpg">
+                    </p>
+                    <p>These examples all create a moment object initialized to March 27th 2020 at 12:30am UTC. YOu can see that all the options 
+                        tried above are rendered in UTC-7, which is the timezone configured on our computers. 
+                    </p>
+                    <p>If we were working directly in JavaScript, the above calls would've returned a string that had the rendered timestamp. 
+                        Then, it's up to us to insert this text in the proper place on the page. This whole process is greatly simplified by 
+                        the Flask-Moment extension, though, by enabling a "moment" object similar to the JavaScript one in our templates. 
+                    </p>
+                    <p>Let's take a look at the timestamp that appears in the profile page. The current "user.html" template allows Python 
+                        to generate a string representation of the time. We can now render this timestamp using Flask-Moment as follows: 
+                        <br><br><img src="./img/adding moment object to user html.jpg">
+                    </p>
+                    <p>The second place where we can take advantage of the Flask-Moment and moment.js is in the "_post.html" sub-template, 
+                        which is invoked from the "index" and "user" pages. In the current version of the template, each post preceded with 
+                        a "(username) says:" line. Now, we can add a timestamp rendered with "fromNow()". 
+                        <br><br><img src="./img/adding moment class to _post html.jpg">
+                    </p>
+                    <p>Now, this is what shows up in the browser:
+                        <br><br><img src="./img/final product tings.jpg">
+                    </p>
+                    
 
             </div>
         </section>
