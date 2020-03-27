@@ -55,7 +55,6 @@
                         <li><a href="#chapter10">Chapter 10: Email Support</a></li>
                         <li><a href="#chapter11">Chapter 11: Styling</a></li>
                         <li><a href="#chapter12">Chapter 12: Dates and Times</a></li>
-                        <li><a href="#deploying">Deploying The Website</a></a>
                     </ul>
                 </article>
                 
@@ -2106,109 +2105,6 @@
                     </p>
 
                 </section>
-                    
-                    
-                    
-                <section id="deploying">
-
-                    <br><br><br><h2><a name="deploying">Deploying The Website</a></h2>
-        
-                    <p>I'd like to preface this section by saying, there are many different services to deploy your website with, but the one 
-                        I'm going with is Heroku. It's a great free service to use, that I'd recommend from having used it myself. 
-                    </p>
-                    <p>The website you're currently on is actually hosted with another free service called "Netlify", but it's unfortunately 
-                        only free for static websites, unlike our dynamic one. Although, it's very convenient, seeing as it's synced up with 
-                        my GitHub repository and automatically re-deploys every time a new commit is issued, without any extra code being 
-                        implemented. 
-                    </p>
-
-                    <h3><u>GitHub Repository Creation</u></h3>
-                    <p>First of all, to deploy a web application, we're going to be uploading all our code from the "microblog" directory on our 
-                        local computer onto a GitHub repository. This can enable you to connect your web hosting service to the repository itself, 
-                        so that any commits to the repo will get deployed. To make this repository, simply log on to your GitHub account and click 
-                        "New" on the left hand side of your screen near "Repositories". Make it 'Public' and the rest is up to you. 
-                        <br><br><img src="./img/making repo.jpg">
-                    </p>
-                    
-                    <h3><u>GitHub Desktop</u></h3>
-                    <p>Next, you want to use one of the methods below to setup your repository with the code you have in your "microblog" folder; 
-                        <br><br><img src="./img/methods for setting up microblog.jpg">
-                    </p>
-                    <p>My preferred method of doing this, is by <a href="https://desktop.github.com/">installing GitHub Desktop</a>. This is the 
-                        one we'll be going through the steps of, but feel free to find another guide on doing another method somewhere else 
-                        on the internet. So, what you need to do is click on the "Set up in Desktop" button, then "Open GitHub Desktop". 
-                        <br><br><img src="./img/opening github desktop with git microblog.jpg">
-                    </p>
-                    <p>Then, we are just going to be "cloning" this empty GitHub repository into a file path on our computer like so. 
-                        <br><br><img src="./img/clone a repo.jpg">
-                    </p>
-                    <p>Now, we're all set up in our new repository on GitHub Desktop. This is where you can commit and push changes to your repository, 
-                        like I've been doing for my Robotics Summative Website. 
-                        <br><br><img src="./img/in microblog repo on github desktop.jpg">
-                    </p>
-                    
-                    <h3><u>Repository Code Upload</u></h3>
-                    <p>Now, just click on your "current repository" button to see all your repositories. Right click on your new repository and then 
-                        hit "Show in Explorer". This'll show all files you have so far. 
-                        <br><br><img src="./img/show in explorer.jpg">
-                    </p>
-                    <p>Once you're in your File Explorer or "Finder" on mac, just copy-paste the "microblog" folder into this repository folder. 
-                        Then, once they're all copied, you should see that there's a ton of changes made to your repository on GitHub Desktop. 
-                        <br><br><img src="./img/2272 changes.jpg">
-                    </p>
-                    <p>To commit these changes to your "master" branch on GitHub, simply add a short summary to them and click "commit to master".
-                        This should take a while. 
-                        <br><br><img src="./img/copying microblog to repo.jpg">
-                    </p>
-                    <p>To push these changes onto your GitHub repository, just hit the "Push to Origin" button in the middle of the GitHub Desktop window. 
-                        <br><br><img src="./img/pushing to origin.jpg">
-                    </p>
-                    <p>Once this has all been pushed to your repo, you can then click on the "Open in Visual Studio Code" button to launch this repository with all your 
-                        code in it. 
-                        <br><br><img src="./img/open in vsc.jpg">
-                    </p>
-                    <p>If you end up making more changes to the code, you'll have to "commit" and "push" your changes once again. 
-                    </p>
-                    
-                    <h3><u>Setting Up Heroku</u></h3>
-                    <p>Firstly, go to <a href="https://www.heroku.com/">heroku.com</a> to sign up for free. 
-                        <br><br><img src="./img/making account on heroku.jpg">
-                    </p>
-                    <p>Once you're logged into your Heroku account, click on "create new app". 
-                        <br><br><img src="./img/create new app.jpg">
-                    </p>
-                    <p>Then, give it a name, set your region to United States, and don't worry about making a <a href="https://devcenter.heroku.com/articles/pipelines">pipeline.</a>
-                        <br><br><img src="./img/create app.jpg">
-                    </p>
-                    <p>Now, there's a few different ways you can deploy to Heroku, but the one I'm going with is by connecing to my GitHub repository. 
-                        <br><br><img src="./img/connect to github.jpg">
-                    </p>
-                    <p>First, authorize Heroku, then find your repository and click on it. 
-                        <br><br><img src="./img/authorize and connect to repo.jpg">
-                    </p>
-                    
-                    <h3><u>Deploying on Heroku</u></h3>
-                    <p>This is where you have the choice to either deploy manually or automatically. Personally, I prefer doing it automatically like 
-                        on my Robotics Summative Website, so I'll go with that. Feel free, again, to look into it yourself and decide which option 
-                        is best for your interests and needs. 
-                        <br><br><img src="./img/deploying on GitHub.jpg">
-                    </p>
-                    
-                    <h3><u>Installing Heroku CLI</u></h3>
-                    <p>The Heroku Command Line Interface can help you out in setting up your hosted web application. 
-                        You can install it <a href="https://devcenter.heroku.com/articles/heroku-cli#download-and-install">here</a>. 
-                    </p>
-                    <p>To ensure that it's installed correctly onto your computer, type this command into your terminal: 
-                        <br><br><img src="./img/heroku version check.jpg">
-                    </p>
-                    <p>Now, you just need to type this command to login to your Heroku account:
-                        <br><br><img src="./img/heroku login.jpg">
-                    </p>
-                    <p>Now, after pressing any key and logging in on your browser like it tells you to, you should see that you're now logged into Heroku in the terminal window. 
-                        <br><br><img src="./img/logged in.jpg">
-                    </p>
-
-                    <h3><u>
                     
                     
 
