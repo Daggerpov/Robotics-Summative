@@ -76,7 +76,7 @@
                         <br><br><img src="./img/python into terminal.jpg">
                     </p>
                     
-                    <h3><u>Installing flask</u></h3>
+                    <h3><u>Installing Flask</u></h3>
                     <p>Once Python is installed, along with pip, you can then use the command below to install packages(like <b><i>Flask</i></b>).
                         <br><br><img src="./img/pip install package.jpg">
                     </p>
@@ -125,7 +125,7 @@
                         <br><br><img src="./img/pip install flask.jpg">
                     </p>
                     
-                    <h3><u>A "Hello, World" Flask Application</u></h3>
+                    <h3><u>"Hello, World" Flask Application</u></h3>
                     <p>
                         The tutorial I followed for this website made various Python and HTML5 files/folders by using
                         the terminal and making directories instead of just doing it the easy way. I found that a much
@@ -487,7 +487,7 @@
 
                     <br><br><br><h2><a name="chapter4">Chapter 4: Database</a></h2>
         
-                    <h3><u>Databases in Flask</u></h3>
+                    <h3><u>Flask Databases</u></h3>
                     <p>Flask doesn't actually support databases natively. This means you'll have the freedom to choose the database that best fits. 
                         There are two groups of databases, those that follow the relational model, and those that don't. Ones that are relational 
                         implement the popular relational query language SQL, and those that don't are called NoSQL. Relational databases are a better 
@@ -512,7 +512,7 @@
                         <br><br><img src="./img/flask migrate.jpg">
                     </p>
                     
-                    <h3><u>Flask-SQLAlchemy Configuration</u></h3>
+                    <h3><u>Configuring Flask-SQLAlchemy</u></h3>
                     <p>During development(as opposed to production), we're going to use a SQLite database. These are convenient for developing small 
                         applications. We now have two new configuration items to add to the config file:
                         <br><br><img src="./img/new config.jpg">
@@ -567,7 +567,7 @@
                     <p>The "__repr__" method tells Python how to print objects of this class, which is going to be useful for debugging. 
                     </p>
                     
-                    <h3><u>Creating The Migration Repository</u></h3>
+                    <h3><u>Migration Repository Creation</u></h3>
                     <p>The model class created defines the initial database structure for this application, but as the application continues to grow, there's 
                         going to be a need to change that structure, whether that's adding, modifying, or removing items. Alembic(the migration framework used by 
                         Flask-Migrate), maintains a migration repository, which is a directory in which it stores its migration scripts. Each time a change is 
@@ -580,7 +580,7 @@
                     <p>After running this command, you will find a new migrations directory, with a few files and a versions sub-directory inside.
                     </p>
 
-                    <h3><u>The First Database Migration</u></h3>
+                    <h3><u>First Database Migration</u></h3>
                     <p>This first migration will include the users table that maps the "User" database model. How Alembic normally creates a database migration 
                         is automatically. To generate a migration automatically, Alembic compares the database structure as defined by the database models, 
                         against the actual database structure currently used in the database. It then populates the migration script with the changes necessary 
@@ -715,7 +715,7 @@
                         werkzeyg.security. 
                     </p>
 
-                    <h3><u>Introduction to Flask-Login</u></h3>
+                    <h3><u>Introduction To Flask-Login</u></h3>
                     <p>This popular Flask extension manages the user's logged-in state. This also provides the "remember me" functionality that allows users 
                         to remain logged in even after closing the browser window. The first step to all of this though, is to - you guessed it, execute the install 
                         command in the terminal for the extension. 
@@ -725,7 +725,7 @@
                         <br><br><img src="./img/adding flask login to init.jpg">
                     </p>
                     
-                    <h3><u>Setting Up The User Model</u></h3>
+                    <h3><u>User Model Setup</u></h3>
                     <p>The Flask-Login extension works in tandam with the application's user model, and expects certain properties and methods to be 
                         implemented in it. The four required items are listed below:
                         <ul>
@@ -827,7 +827,7 @@
                         function and then check if the "netloc" component is set or not. 
                     </p>
 
-                    <h3><u>Showing The Logged In User In Templates</u></h3>
+                    <h3><u>Showing Logged-In Users</u></h3>
                     <p>Instead of using fake users on the homepage, we can now use Flask-Login's "current_user" in the template.
                         <br><br><img src="./img/index html no more mock users.jpg">
                     </p>
@@ -939,7 +939,7 @@
                         <br><br><img src="./img/setting up gravatar image.jpg">
                     </p>
                     
-                    <h3><u>Using Jinja2 Sub-Templates</u></h3>
+                    <h3><u>Jinja2 Sub-Templates</u></h3>
                     <p>We now want for all posts written by the user to be displayed on the "index" page. To do this, we're going to make a sub-template 
                         that just renders one post, and then we're oging to reference it from both the "user.html" and "index.html" templates. To begin, 
                         we can create the sub-template, with just the HTML for a single post. We're going to be naming this template "_post" in the "templates" 
@@ -1026,7 +1026,7 @@
 
                     <br><br><br><h2><a name="chapter7">Chapter 7: Error Handling</a></h2>
         
-                    <h3><u>Error Handling In Flask</u></h3>
+                    <h3><u>Flask Error Handling</u></h3>
                     <p>As it stands right now, we have a little bug in our code. It occurs when there's two or more users registered 
                         on the website, you click on the edit_profile button, and then you try changing the username of another user 
                         that's alread registered. What'll happen now, is you'll see this message pop up in your browser:
@@ -1081,8 +1081,8 @@
                         time, you're going to see a more friendly error page. 
                     </p>
                     
-                    <h3><u>Sending Errors by Email</u></h3>
-                    <p>I think we can all agree that having to constantly monitor the terminal and see what errors occur that way is a hassle. 
+                    <h3><u>Sending Error Emails</u></h3>
+                    <p>Constantly monitoring the terminal and see what errors occur that way is a hassle. 
                         It's for that reason that we would want a feature implemented to just notify us by email, or at least in a more convenient 
                         manner than through the terminal. 
                     </p>
@@ -1152,7 +1152,7 @@
                         </p>
                     </ol>
                         
-                    <h3><u>Logging To A File</u></h3>
+                    <h3><u>Logging To Files</u></h3>
                     <p>Receiving errors via email is okay, but having a file to store errors via logging is even better. There's some 
                         failure conditions that don't end in a Python exception and aren't a major problem, per say, but may still be 
                         useful to save for debugging purposes. For this reason, we're also going to maintain a log file for the application. 
@@ -1194,7 +1194,7 @@
                         time it starts in a line in the log file. These will tell you when the server was restarted. 
                     </p>
 
-                    <h3><u>Fixing The Original Bug</u></h3>
+                    <h3><u>Fixing The Bug</u></h3>
                     <p>Now, that we have our error handling system all figured out for the future, let's focus on fixing the error at hand. 
                     </p>
                     <p>Here in the "EditProfileForm" class inside of the "forms.py" file, we have to implement a username validation. This'll 
@@ -1345,7 +1345,7 @@
                         <br><br><img src="./img/migrating followers to database.jpg">
                     </p>
                     
-                    <h3><u>Adding And Removing 'Follows'</u></h3>
+                    <h3><u>Adding & Removing 'Follows'</u></h3>
                     <p>Thanks to the SQLAlchemy ORM, a user following another user can be recorded in the database working with the 
                         "followed" relationship as if it was a list. This is done just by appending the followed users to a list and removing 
                         them to 'unfollow'. 
@@ -1371,7 +1371,7 @@
                         terminators we've used in the past have been "all()" and "first()". 
                     </p>
                     
-                    <h3><u>Obtaining Posts From Followed Users</u></h3>
+                    <h3><u>Getting Posts From Followed Users</u></h3>
                     <p>In the index page of the application, we want to show blog posts written by all the people that are followed by the 
                         logged in user, much like you'd see on Instagram. To do this, we need to come up with a database query that returns 
                         these posts. 
@@ -1748,12 +1748,12 @@
                     <h3><u>Simple Email Framework</u></h3>
                     <p>Now, let's integrate emails directly into our application. 
                     </p>
-                    <p>We'll begin by writing a helper function that sends an emaail in a new file/module called "email.py" inside of the "app" folder. 
+                    <p>We'll begin by writing a helper function that sends an email in a new file/module called "email.py" inside of the "app" folder. 
                         This is the same thing as what we saw in the previous section in the python shell. 
                         <br><br><img src="./img/email py creation.jpg">
                     </p>
                     
-                    <h3><u>Requesting a Password Reset</u><h3>
+                    <h3><u>Password Reset Request</u><h3>
                     <p>For the purpose of allowing users to have the option to request their password to be reset, we're going to add a link in the login page. 
                         <br><br><img src="./img/adding forgot your password link to login.jpg">
                     </p>
@@ -2054,7 +2054,7 @@
                         DD/MM/YYYY vs. MM/DD/YYYY and many other cultural or regional styles to formatting the data and time. 
                     </p>
                     
-                    <h3><u>Introducing Moment.js and Flask-Moment</u></h3>
+                    <h3><u>Introducing Moment.js & Flask-Moment</u></h3>
                     <p>Moment.js is a small open-source JavaScript library that provides every imaginable formatting option. Flask-Moment 
                         is a small Flask extension that makes it very easy to incorporate moment.js into our application. Let's start by installing it. 
                         <br><br><img src="./img/pip install flask-moment.jpg">
