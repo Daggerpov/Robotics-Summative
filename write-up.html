@@ -1888,8 +1888,8 @@
                         In most cases, these contexts are automatically managed by the framework, but when the application starts custom threads, contexts for 
                         those threads may need to be manually created. 
                     </p>
-                    <p>Many extensions require an application context to be in place to work, becuase that allows them to find the Flask application instance 
-                        without itbeing passed as an argument. The reason many extensions need to know the application instance is becuase they have their 
+                    <p>Many extensions require an application context to be in place to work, because that allows them to find the Flask application instance 
+                        without it being passed as an argument. The reason many extensions need to know the application instance is becuase they have their 
                         configuration sotred in the "app.config" object, like what's the case with Flask-Mail. The "mail_send()" method needs to access the configuration 
                         variable values for the email server. 
                     </p>
