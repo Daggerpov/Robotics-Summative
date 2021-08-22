@@ -1,123 +1,152 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <meta name="author" content="Daniel Agapov">
-        <title>RavenScout | Robotics Summative</title>
-        <link rel="stylesheet" href="./css/about-ravenscout-style.css">
-    </head>
-    <body>
-        <header>
-            <div class="container">
-                <div id="project">
-                    <h1>Robotics Summative</h1>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="home.html">Home</a></li>
-                        <li><a href="write-up.html">Write-Up</a></li>
-                        <li class = "current"><a href="about-ravenscout.html">About RavenScout</a></li> 
-                    </ul>
-                </nav>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="author" content="Daniel Agapov">
+    <title>RavenScout | Robotics Summative</title>
+    <link rel="stylesheet" href="./css/about-ravenscout-style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div id="project">
+                <h1>Robotics Summative</h1>
             </div>
-        </header>
-        <section id="welcome">
-            <div class="container">
-                <h1>Scouting Web App Details</h1>
-                <p>The web application we're currently trying to develop is called "RavenScout". It is a web application to 
-                    help out teams in the First Robotics Competition by providing them with trusted and specific stats on
-                    different teams' robots. Trusted users will be able to upload new data immediately following an FRC match, 
-                    that'll then get displayed on our website the form of data visualizations. <a href="https://github.com/FusionStreak/RavenScout" target="_blank">Here</a> is where you can find the GitHub repository for this web application. 
-                </p>
-            </div>
-        </section>
-        <section id="about-the-project">
-            <div class="container">
-                <h3><u>Contributors</u></h3>
-                <p>Well, initially this was just a project started by Sayfullah, but then Hassan and I decided to help out. 
-                    Us three will all work on the programming aspect of it, while we have others telling us what to implement. 
-                    One of these people is Tanner, who's given us some requirements and things he wants included in the website. 
-                </p>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="write-up.html">Write-Up</a></li>
+                    <li class="current"><a href="about-ravenscout.html">About RavenScout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="welcome">
+        <div class="container">
+            <h1>Scouting Web App Details</h1>
+            <p>The web application we're currently trying to develop is called "RavenScout". It is a web application to
+                help out teams in the First Robotics Competition by providing them with trusted and specific stats on
+                different teams' robots. Trusted users will be able to upload new data immediately following an FRC
+                match,
+                that'll then get displayed on our website the form of data visualizations. <a
+                    href="https://github.com/FusionStreak/RavenScout" target="_blank">Here</a> is where you can find the
+                GitHub repository for this web application.
+            </p>
+        </div>
+    </section>
+    <section id="about-the-project">
+        <div class="container">
+            <h3><u>Contributors</u></h3>
+            <p>Well, initially this was just a project started by Sayfullah, but then Hassan and I decided to help out.
+                Us three will all work on the programming aspect of it, while we have others telling us what to
+                implement.
+                One of these people is Tanner, who's given us some requirements and things he wants included in the
+                website.
+            </p>
 
-                <h3><u>Trusted Users</u></h3>
-                <p>Initially, the website's database will only contain the login details for certain teams' trusted users. 
-                    We can manually input these fields into the database under a "trusted_user" model to be checked upon 
-                    any attempted login to our website. 
-                </p>
-                
-                <h3><u>Data Processing</u></h3>
-                <p>Data will be uploaded by trusted users in a standardised CSV file, with a corresponding format to that of 
-                    the current year's competition. There will be a form to submit new data which will contain a few fields
-                    to aid with categorizing the file, such as: event, team number, date, as well as, one to submit their 
-                    form into. 
-                </p>
-                
-                <h3><u>Pulling Data</u></h3>
-                <p>This web application will be able to pull data from <a href="https://www.thebluealliance.com/apidocs" target="_blank">The Blue Alliance API</a>, a popular web application used for similar data-storing tasks to 
-                    our web application. We can accomplish this task by web-scraping their data from the internet and then 
-                    including it into models for their data, separated form our data. 
-                </p>
+            <h3><u>Trusted Users</u></h3>
+            <p>Initially, the website's database will only contain the login details for certain teams' trusted users.
+                We can manually input these fields into the database under a "trusted_user" model to be checked upon
+                any attempted login to our website.
+            </p>
 
-                <h3><u>Checking Data</u></h3>
-                <p>For certain data fields, we'll be able to cross-reference with The Blue Alliance's API, once it's up on their website. 
-                    This will be done to validate some of the data sent in my our trusted users. Since, there's is always 
-                    accurate. The only problem with corss-referencing all data fields we have, is that we're going to have 
-                    much more specific fields that aren't going to be part of their API. 
-                </p>
+            <h3><u>Data Processing</u></h3>
+            <p>Data will be uploaded by trusted users in a standardised CSV file, with a corresponding format to that of
+                the current year's competition. There will be a form to submit new data which will contain a few fields
+                to aid with categorizing the file, such as: event, team number, date, as well as, one to submit their
+                form into.
+            </p>
 
-                <h3><u>Database Models</u></h3>
-                <p>This is our current schematic of what fields each database model would contain(onosh, onott, and onnob are code names for competitions in Ontario in 2020):
-                    <br><br><img src="./img/database diagram.jpg">
-                </p>
+            <h3><u>Pulling Data</u></h3>
+            <p>This web application will be able to pull data from <a href="https://www.thebluealliance.com/apidocs"
+                    target="_blank">The Blue Alliance API</a>, a popular web application used for similar data-storing
+                tasks to
+                our web application. We can accomplish this task by web-scraping their data from the internet and then
+                including it into models for their data, separated form our data.
+            </p>
 
-                <h3><u>Displaying Data</u></h3>
-                <p>Aggregated data will be displayed in the form of graphs, data visualizations, and such.
-                </p>
+            <h3><u>Checking Data</u></h3>
+            <p>For certain data fields, we'll be able to cross-reference with The Blue Alliance's API, once it's up on
+                their website.
+                This will be done to validate some of the data sent in my our trusted users. Since, there's is always
+                accurate. The only problem with corss-referencing all data fields we have, is that we're going to have
+                much more specific fields that aren't going to be part of their API.
+            </p>
 
-                <h3><u>Website Pages</u></h3>
-                <p>Much like how this website has 3 different pages to navigate to in its navigation bar, we're planning to have a few. All of them 
-                    will be accessible to anyone that visits the website, except for the "Upload Data" page. Here are the ones we're thinking of having 
-                    as of now(subject to change in the future):
-                    <ul>
-                        <li>Home: This is where anyone will be able to see all the latest data uploads from the most recent events. For every data upload, 
-                            it'll include: the Team's user, how long ago it was uploaded, and the data itself. This page will have implemented 
-                            "pagination"(see <a href="write-up.html" target="_blank">Chapter 9</a>) of my write-up. This will allow for only the 20 or so most recent data uploads 
-                            to show on one page, with "Next Page" and "Previous Page" buttons to go through. 
-                        </li>
-                        <li>Events: A page for anyone to find a specific event from. It will categorize by: year, event, round, match. Then, from these events, 
-                            you can see information like standings and game scores. From these matches, though, you can click on specific teams' robots. 
-                        </li>
-                        <li>Teams: This is going to be a page dedicated to finding teams using a search bar on the top. Once you click on specific teams' robots, 
-                            their most recent match data will show up, much like the Home page. This data will be able to get filtered and sorted as to accomodate 
-                            the visitor's needs. These filtrations may include things like: average scores from a specified number of matches in the past(i.e. 
-                            average balls scored into the low goal from the last 10matches), how many of their past matches show up on the page at once(like in the 
-                            Home page), preferred method of scoring, and more. Along with that, though, will be their information, retrieved from 
-                            The Blue Alliance's API. This will include, their profile picture, past year data, sponsors, events they've attended/are attending. 
-                        </li>
-                        <li>Login/Logout: If logged in, this will simply log you out of your account. If you're not logged in, you'll be redirected to a "Login" 
-                            page. This will include the username and password form fields for you to fill out. As well as, a "register" button, and a "forgot password" one.
-                        </li>
-                        <li>Register: This will include the "username", "email", "password", and "confirm password" form fields for users to fill out. 
-                        </li>
-                    </ul>
-                </p>
+            <h3><u>Database Models</u></h3>
+            <p>This is our current schematic of what fields each database model would contain (onosh, onott, and onnob
+                are code names for competitions in Ontario in 2020):
+                <br><br><img src="./img/database diagram.jpg">
+            </p>
 
-                <h3><u>Possible Mobile Application</u></h3>
-                <p>As of right now, this is far beyond what we're currently planning. Especially since, the internet web application will also be accessible 
-                    for mobile users. However, it may come in the distant future. 
-                </p>
+            <h3><u>Displaying Data</u></h3>
+            <p>Aggregated data will be displayed in the form of graphs, data visualizations, and such.
+            </p>
+
+            <h3><u>Website Pages</u></h3>
+            <p>Much like how this website has 3 different pages to navigate to in its navigation bar, we're planning to
+                have a few. All of them
+                will be accessible to anyone that visits the website, except for the "Upload Data" page. Here are the
+                ones we're thinking of having
+                as of now (subject to change in the future):
+            <ul>
+                <li>Home: This is where anyone will be able to see all the latest data uploads from the most recent
+                    events. For every data upload,
+                    it'll include: the Team's user, how long ago it was uploaded, and the data itself. This page will
+                    have implemented
+                    "pagination" (see <a href="write-up.html" target="_blank">Chapter 9</a>) of my write-up. This will
+                    allow for only the 20 or so most recent data uploads
+                    to show on one page, with "Next Page" and "Previous Page" buttons to go through.
+                </li>
+                <li>Events: A page for anyone to find a specific event from. It will categorize by: year, event, round,
+                    match. Then, from these events,
+                    you can see information like standings and game scores. From these matches, though, you can click on
+                    specific teams' robots.
+                </li>
+                <li>Teams: This is going to be a page dedicated to finding teams using a search bar on the top. Once you
+                    click on specific teams' robots,
+                    their most recent match data will show up, much like the Home page. This data will be able to get
+                    filtered and sorted as to accomodate
+                    the visitor's needs. These filtrations may include things like: average scores from a specified
+                    number of matches in the past (i.e.
+                    average balls scored into the low goal from the last 10matches), how many of their past matches show
+                    up on the page at once (like in the
+                    Home page), preferred method of scoring, and more. Along with that, though, will be their
+                    information, retrieved from
+                    The Blue Alliance's API. This will include, their profile picture, past year data, sponsors, events
+                    they've attended/are attending.
+                </li>
+                <li>Login/Logout: If logged in, this will simply log you out of your account. If you're not logged in,
+                    you'll be redirected to a "Login"
+                    page. This will include the username and password form fields for you to fill out. As well as, a
+                    "register" button, and a "forgot password" one.
+                </li>
+                <li>Register: This will include the "username", "email", "password", and "confirm password" form fields
+                    for users to fill out.
+                </li>
+            </ul>
+            </p>
+
+            <h3><u>Possible Mobile Application</u></h3>
+            <p>As of right now, this is far beyond what we're currently planning. Especially since, the internet web
+                application will also be accessible
+                for mobile users. However, it may come in the distant future.
+            </p>
 
 
 
-            </div>
-        </section>
-        
-        
-        
-        
-        <footer>
-            <p>Made by: Daniel Agapov, rookie member of the LDHSS Robotics team(RoboRavens4783)  |  2020</p>
-        </footer>
-    </body>
+        </div>
+    </section>
+
+
+
+
+    <footer>
+        <p>Made by: Daniel Agapov, rookie member of the LDHSS Robotics team (RoboRavens4783) | 2020</p>
+    </footer>
+</body>
+
 </html>
