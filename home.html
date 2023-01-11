@@ -1,62 +1,68 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <meta name="author" content="Daniel Agapov">
-        <title>Home | Robotics Summative</title>
-        <link rel="stylesheet" href="./css/home-style.css">
-    </head>
-    <body>
-        <header>
-            <div class="container">
-                <div id="project">
-                    <h1>Robotics Summative</h1>
-                </div>
-                <nav>
-                    <ul>
-                        <li class = "current"><a href="home.html">Home</a></li>
-                        <li><a href="write-up.html">Write-Up</a></li>
-                        <li><a href="about-ravenscout.html">About RavenScout</a></li> 
-                    </ul>
-                </nav>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="author" content="Daniel Agapov">
+    <title>Home | Robotics Summative</title>
+    <link rel="stylesheet" href="./css/home-style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div id="project">
+                <h1>Robotics Summative</h1>
             </div>
-        </header>
-        <section id="welcome">
-            <div class="container">
-                <h1>Daniel Agapov's Robotics Summative Website</h1>
-                <p>This is how I'll be presenting my robotics summative write-up for the 2020 First Robotics Competition season, which is in the form of this 
-                    website I've made with HTML5 and CSS3. If you want to see the code that went into this website, you can visit the <a href="https://github.com/DanielAgapov/Robotics-Summative" target="_blank">repository</a> on github. This website is compatible on both mobile and on laptop/desktop computers.</p>
-            </div>
-        </section>
-        <section id="about-the-project">
-            <div class="container">
-                <p>From the start of the season until around the end of February, Hassan and I had been 
-                    working on the robot's drivetrain code together. Then, as Sayf started working on 
-                    a website to automate scouting for FRC, I decided to join in on that. Since, we did not have 
-                    a set due date or needed it to be completed for a certain competition this year, I had time 
-                    to properly start learning about web development. So, Sayf decided it was best to just have 
-                    me learn about the tools he was planning to use for building that website, which, as of right 
-                    now, is to be called "RavenScout". <br><br>The tools being:
-                </p>
+            <nav>
                 <ul>
-                    <li>Flask, a micro web framework written in Python<br><br><img src="./img/flask-logo.png" alt="flask" style="height:100px;"></li><br><br>
-                    <li>Python for back-end<br><br><img src="./img/pythonpython.png" alt="python" style="height:100px;"></li><br><br>
-                    <li>HTML5, a bit of JavaScript, and a bit of CSS3 all for front-end<br><br><img src="./img/front-end-logos.png" alt="front end logos" style="height:100px;"></li><br>
+                    <li class="current"><a href="home.html">Home</a></li>
+                    <li><a href="write-up.html">Write-Up</a></li>
+                    <li><a href="about-ravenscout.html">About RavenScout</a></li>
                 </ul>
-                <p>On top of just learning the different tools he wanted me to use for the website, it also required
-                    for me to learn about databases and other programming concepts. A lot of this information was found in 
-                    the guide he sent, which you can find here: <a href="https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world" target="_blank">The Flask Mega-Tutorial</a>. 
-                    However, I included a few concepts/chunks of code not found in this guide. As well as, some diagrams I made for databases and more. 
-                </p>
-                <p>I found this assignment challenging and very useful towards my software engineering career. It allowed
-                    me to explore different areas of software development that opened my eyes to new opportunities 
-                    and technologies. 
-                </p>
-            </div>
-        </section>
-        <footer>
-            <p>Made by: Daniel Agapov, rookie member of the LDHSS Robotics team (RoboRavens4783)  |  2020</p>
-        </footer>
-    </body>
+            </nav>
+        </div>
+    </header>
+    <section id="welcome">
+        <div class="container">
+            <h1>Daniel Agapov's Robotics Summative Website</h1>
+            <p>This cross-platform website I've made with HTML and CSS (<a href="https://github.com/DanielAgapov/Robotics-Summative" target="_blank">code repository</a>) 
+                is made to showcase my robotics summative write-up for the 2020 First Robotics Competition.
+            </p>
+        </div>
+    </section>
+    <section id="about-the-project">
+        <div class="container">
+            <p>After having worked with Hassan on our team robot's driving mechanism in C++, I decided to join
+                Sayfullah in working on a web application called RavenScout. Thus, I began by making my first 
+                web application. Afterwards, I wrote a lengthy guide (<a href="write-up.html">write-up</a>) to solidify my knowledge,
+                and teach the material in a way I thought would be more beneficial than the <a
+                    href="https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world"
+                    target="_blank">the tutorial I followed</a>.
+                This includes my own thorough explanations, code snippets, and diagrams. 
+
+            <h2>Technologies Used:
+            </h2>
+            <ul>
+                <li>Flask as the web framework<br><br><img src="./img/flask-logo.png" alt="flask"
+                        style="height:100px;"></li><br><br>
+                <li>Python for back-end<br><br><img src="./img/pythonpython.png" alt="python" style="height:100px;">
+                </li><br><br>
+                <li>Dynamic HTML5 (using Jinja), a bit of JavaScript, and CSS3 all for front-end<br><br>
+                    <img src="./img/jinja.png" alt="Jinja" style="height:100px;">
+                    <img
+                        src="./img/front-end-logos.png" alt="front end logos" style="height:100px;"></li><br>
+            </ul>
+            <p>I found this assignment challenging and very useful towards my software engineering career. It allowed
+                me to explore different areas of software development that opened my eyes to new opportunities
+                and technologies. 
+            </p>
+        </div>
+    </section>
+    <footer>
+        <p>Made by: Daniel Agapov, rookie member of the LDHSS Robotics team (RoboRavens4783) | 2020</p>
+    </footer>
+</body>
+
 </html>
